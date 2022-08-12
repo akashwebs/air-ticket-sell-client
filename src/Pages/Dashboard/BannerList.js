@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Loading from "../../Shared/Loading";
 import BannerListRow from "./BannerListRow";
 import { useQuery } from "@tanstack/react-query";
 
 const BannerList = () => {
+  let filterUrl = "all";
+  let url = `http://localhost:5000/allBanner/${filterUrl}`;
+
+  const handleBannerFilter = (e) => {
+    e.preventDefault();
+    let newUrl = e.target.value;
+    url = `http://localhost:5000/allBanner/${newUrl}`;
+
+    refetch();
+  };
+
   const {
     isLoading,
     error,
     data: bannerList,
-    refetch
-  } = useQuery(["repoData"], () =>
-    fetch("http://localhost:5000/allBanner/unhidefdf").then((res) => res.json())
-  );
+    refetch,
+  } = useQuery(["repoData"], () => fetch(url).then((res) => res.json()));
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -27,13 +36,17 @@ const BannerList = () => {
             <th className="flex items-center">
               <span> Action</span>
               <form>
-                <select class="select select-bordered w-full md:w-15 ml-2">
+                <select
+                  onChange={(e) => handleBannerFilter(e)}
+                  name="sliderFilter"
+                  class="select select-bordered w-full md:w-15 ml-2"
+                >
                   <option disabled selected>
                     Filter
                   </option>
-                  <option>All Slider</option>
-                  <option>Hide slider</option>
-                  <option>Unhide slider</option>
+                  <option>All</option>
+                  <option>Hide</option>
+                  <option>Unhide</option>
                 </select>
               </form>
             </th>

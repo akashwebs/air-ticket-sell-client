@@ -18,7 +18,17 @@ const BannerListRow = ({ bannerRow, index, refetch }) => {
         refetch();
       });
   };
-
+  const handleDeleteBanner = () => {
+    const url = `http://localhost:5000/deleteBanner/${bannerRow?._id}`;
+    fetch(url, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refetch();
+      });
+  };
   return (
     <tr>
       <th>{index}</th>
@@ -59,7 +69,12 @@ const BannerListRow = ({ bannerRow, index, refetch }) => {
           </button>
         )}
 
-        <button onClick={handleDeleteBanner} class="btn btn-warning btn-xs text-black ml-2">Delete</button>
+        <button
+          onClick={handleDeleteBanner}
+          class="btn btn-warning btn-xs text-black ml-2"
+        >
+          Delete
+        </button>
       </td>
     </tr>
   );
