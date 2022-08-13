@@ -18,6 +18,9 @@ const Dashboard = () => {
       <li>
         <Link to={"/bannerlist"}>Banner Setting</Link>
       </li>
+      <li>
+        <Link to={"/donnerlist"}>All Donner</Link>
+      </li>
     </>
   );
 

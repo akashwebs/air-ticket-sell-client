@@ -11,6 +11,7 @@ import Overview from "./Pages/Dashboard/Overview";
 import AddDonor from "./Pages/Dashboard/AddDonor";
 import AddBanner from "./Pages/Dashboard/AddBanner";
 import BannerList from "./Pages/Dashboard/BannerList";
+import DonnerList from "./Pages/Dashboard/DonnerList";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="donor" element={<AddDonor></AddDonor>}></Route>
           <Route path="addbanner" element={<AddBanner></AddBanner>}></Route>
           <Route path="bannerlist" element={<BannerList></BannerList>}></Route>
+          <Route path="donnerlist" element={<DonnerList></DonnerList>}></Route>
         </Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<Signup></Signup>}></Route>
