@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import swal from "sweetalert";
 
 const BannerListRow = ({ bannerRow, index, refetch }) => {
   // const [hide, setHide] = useState(false);
@@ -14,18 +15,48 @@ const BannerListRow = ({ bannerRow, index, refetch }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         refetch();
       });
   };
   const handleDeleteBanner = () => {
-    const url = `http://localhost:5000/deleteBanner/${bannerRow?._id}`;
+    swal({
+      title: "Are you sure?",
+      text: `Once deleted, you will not be able to recover " ${bannerRow?.bannerName}"`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        const url = `http://localhost:5000/deleteBanner/${bannerRow?._id}`;
+        fetch(url, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            refetch();
+          });
+
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal(`"${bannerRow?.bannerName}" file is safe!`);
+      }
+    });
+  };
+
+  const handleOrders = (e) => {
+    e.preventDefault();
+    const url = `http://localhost:5000/updatebanner/${bannerRow?._id}`;
     fetch(url, {
-      method: "DELETE",
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ orders: e.target.orders.value }),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         refetch();
       });
   };
@@ -75,6 +106,21 @@ const BannerListRow = ({ bannerRow, index, refetch }) => {
         >
           Delete
         </button>
+      </td>
+      <td>
+        <form onSubmit={handleOrders}>
+          <input
+            className="input input-bordered w-12 px-2 mr-2"
+            defaultValue={bannerRow?.orders}
+            name="orders"
+            type={"number"}
+          />
+          <input
+            className="btn btn-primary btn-square"
+            value={"set"}
+            type={"submit"}
+          />
+        </form>
       </td>
     </tr>
   );

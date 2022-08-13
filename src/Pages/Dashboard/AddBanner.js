@@ -30,6 +30,7 @@ const AddBanner = () => {
             bannerName: data.bannerName,
             extraUrl: data.url,
             hide: false,
+            orders: 1,
           };
 
           fetch("http://localhost:5000/addBanner", {

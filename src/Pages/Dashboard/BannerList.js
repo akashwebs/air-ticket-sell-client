@@ -50,6 +50,7 @@ const BannerList = () => {
                 </select>
               </form>
             </th>
+            <th>Orders</th>
           </tr>
         </thead>
         <tbody>
