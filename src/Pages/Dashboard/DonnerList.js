@@ -1,11 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
+import swal from "sweetalert";
 import Heading from "../../Shared/Heading";
 import Loading from "../../Shared/Loading";
 import DonnerEditModal from "./DonnerEditModal";
 import DonnerListRow from "./DonnerListRow";
 
 const DonnerList = () => {
+  const [donnerId, setDonnerId] = useState("");
+
   let url = `http://localhost:5000/allDonner`;
 
   const {
@@ -15,7 +18,7 @@ const DonnerList = () => {
     refetch,
   } = useQuery(["allDonnerList"], () => fetch(url).then((res) => res.json()));
 
-  if (isLoading) {
+   if (isLoading) {
     return <Loading></Loading>;
   }
 
@@ -26,6 +29,34 @@ const DonnerList = () => {
     url = `http://localhost:5000/allBanner/${newUrl}`;
 
     refetch(); */
+  };
+
+  const handleDaleteDonner = (id) => {
+    const url = `http://localhost:5000/deleteDonnerProfile/${id}`;
+
+    swal({
+      title: "Are you sure?",
+      text: `Once deleted, you will not be able to recover "`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(url, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            refetch();
+          });
+
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal(`your file is safe!`);
+      }
+    });
   };
 
   return (
@@ -82,6 +113,8 @@ const DonnerList = () => {
                 donner={donner}
                 index={index + 1}
                 refetch={refetch}
+                setDonnerId={setDonnerId}
+                handleDaleteDonner={handleDaleteDonner}
               ></DonnerListRow>
             ))}
           </tbody>
@@ -91,7 +124,7 @@ const DonnerList = () => {
           </tfoot>
         </table>
       </div>
-      <DonnerEditModal></DonnerEditModal>
+      <DonnerEditModal donnerId={donnerId} refetch={refetch}></DonnerEditModal>
     </div>
   );
 };

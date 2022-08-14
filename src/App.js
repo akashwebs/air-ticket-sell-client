@@ -12,6 +12,8 @@ import AddDonor from "./Pages/Dashboard/AddDonor";
 import AddBanner from "./Pages/Dashboard/AddBanner";
 import BannerList from "./Pages/Dashboard/BannerList";
 import DonnerList from "./Pages/Dashboard/DonnerList";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<Signup></Signup>}></Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

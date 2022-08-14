@@ -1,10 +1,7 @@
 import React from "react";
 
-const DonnerListRow = ({ donner, index }) => {
+const DonnerListRow = ({ donner, index, setDonnerId, handleDaleteDonner }) => {
   const { img, fullName, phone, _id, bloodGroup } = donner;
-
-  const handleDelete = () => {};
-  const handleEdit = () => {};
 
   return (
     <tr>
@@ -25,14 +22,14 @@ const DonnerListRow = ({ donner, index }) => {
       <td>{bloodGroup}</td>
       <td>
         <label
-          onClick={() => handleEdit()}
+          onClick={() => setDonnerId(_id)}
           for="donner_edit_modal"
           class="btn btn-primary btn-xs text-white"
         >
           Edit
         </label>
         <button
-          onClick={handleDelete}
+          onClick={() => handleDaleteDonner(_id)}
           class="btn btn-warning btn-xs text-black ml-2"
         >
           Delete

@@ -44,7 +44,8 @@ const AddDonor = () => {
             phone: data.phone,
             fbID: data.fbID,
             birthday: date,
-            elegibale: true,
+            elegibale: data.elegibale,
+            gender: data.gender,
             approved: true,
           };
 
@@ -265,7 +266,52 @@ const AddDonor = () => {
             class="input input-bordered w-full max-w-md"
           />
         </div>
-
+        {/* after */}
+        <div class="form-control w-full max-w-sm">
+          <label class="label">
+            <span class="label-text">
+              Gender <span className="text-red-400">*</span>
+            </span>
+          </label>
+          <select
+            {...register("gender", { required: true })}
+            class="select select-bordered"
+          >
+            <option disabled selected>
+              Select gender
+            </option>
+            <option>male</option>
+            <option>female</option>
+          </select>
+          <label class="label">
+            <span class="label-text-alt text-red-600">
+              {errors.gender?.type === "required" &&
+                "please Select any gender "}
+            </span>
+          </label>
+        </div>
+        <div class="form-control w-full max-w-sm">
+          <label class="label">
+            <span class="label-text">
+              Elegibale <span className="text-red-400">*</span>
+            </span>
+          </label>
+          <select
+            {...register("elegibale", { required: true })}
+            class="select select-bordered"
+          >
+            <option disabled selected>
+              Select
+            </option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+          <label class="label">
+            <span class="label-text-alt text-red-600">
+              {errors.elegibale?.type === "required" && "please Select yes/no"}
+            </span>
+          </label>
+        </div>
         <div class="form-control w-full max-w-md">
           <label class="label">
             <span class="label-text">কতবার রক্ত দিয়েছেন?</span>
