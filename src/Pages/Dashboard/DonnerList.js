@@ -9,7 +9,14 @@ import DonnerListRow from "./DonnerListRow";
 const DonnerList = () => {
   const [donnerId, setDonnerId] = useState("");
 
-  let url = `http://localhost:5000/allDonner`;
+  let url = `http://localhost:5000/allDonner/all`;
+
+  const handleDonnerSerach = (e) => {
+    e.preventDefault();
+    const searchInfo = e.target.serachInfo.value.toLowerCase();
+    url = `http://localhost:5000/allDonner/${searchInfo}`;
+    refetch();
+  };
 
   const {
     isLoading,
@@ -18,7 +25,7 @@ const DonnerList = () => {
     refetch,
   } = useQuery(["allDonnerList"], () => fetch(url).then((res) => res.json()));
 
-   if (isLoading) {
+  if (isLoading) {
     return <Loading></Loading>;
   }
 
@@ -62,21 +69,52 @@ const DonnerList = () => {
   return (
     <div>
       <Heading>
-        All Donner
-        <form>
-          <select
-            onChange={(e) => handleBannerFilter(e)}
-            name="sliderFilter"
-            class="select select-bordered w-full md:w-15 ml-2"
-          >
-            <option disabled selected>
-              Filter
-            </option>
-            <option>All</option>
-            <option>Hide</option>
-            <option>Unhide</option>
-          </select>
-        </form>
+        <div className="grid md:grid-cols-2 grid-cols-1 justify-between">
+          <div>All Donner</div>
+          <div className="flex items-center">
+            <div>
+              <select
+                onChange={(e) => handleBannerFilter(e)}
+                name="sliderFilter"
+                class="select select-bordered w-full md:w-15 ml-2"
+              >
+                <option disabled selected>
+                  Filter
+                </option>
+                <option>All</option>
+                <option>Hide</option>
+                <option>Unhide</option>
+              </select>
+            </div>
+            {/* serach data with phone, name */}
+            <form onSubmit={handleDonnerSerach} class="form-control ml-5">
+              <div class="input-group">
+                <input
+                  name="serachInfo"
+                  type="text"
+                  placeholder="Search…"
+                  class="input input-bordered"
+                />
+                <button type="submit" class="btn btn-square">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </Heading>
 
       <div class="overflow-x-auto w-full">
