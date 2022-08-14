@@ -18,6 +18,12 @@ const DonnerList = () => {
     refetch();
   };
 
+  const handleGroupFilter = (e) => {
+    const filterGroup = e.target.value.toLowerCase();
+    url = `http://localhost:5000/allDonner/${filterGroup}`;
+    refetch();
+  };
+
   const {
     isLoading,
     error,
@@ -74,16 +80,19 @@ const DonnerList = () => {
           <div className="flex items-center">
             <div>
               <select
-                onChange={(e) => handleBannerFilter(e)}
+                onChange={(e) => handleGroupFilter(e)}
                 name="sliderFilter"
                 class="select select-bordered w-full md:w-15 ml-2"
               >
-                <option disabled selected>
-                  Filter
-                </option>
-                <option>All</option>
-                <option>Hide</option>
-                <option>Unhide</option>
+                <option selected>All</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+                <option>O+</option>
+                <option>O-</option>
               </select>
             </div>
             {/* serach data with phone, name */}
@@ -125,20 +134,6 @@ const DonnerList = () => {
               <th>Name</th>
               <th className="flex items-center">
                 <span> Phone </span>
-                <form>
-                  <select
-                    onChange={(e) => handleBannerFilter(e)}
-                    name="sliderFilter"
-                    class="select select-bordered w-full md:w-15 ml-2"
-                  >
-                    <option disabled selected>
-                      Filter
-                    </option>
-                    <option>All</option>
-                    <option>Hide</option>
-                    <option>Unhide</option>
-                  </select>
-                </form>
               </th>
               <th>Blood Group</th>
               <th>Action</th>
