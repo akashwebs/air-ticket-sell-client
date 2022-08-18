@@ -21,6 +21,9 @@ const Dashboard = () => {
       <li>
         <Link to={"/donnerlist"}>All Donner</Link>
       </li>
+      <li>
+        <Link to={"/add-notice"}>Add Notice</Link>
+      </li>
     </>
   );
 

@@ -14,6 +14,12 @@ const DonnerList = () => {
   const handleDonnerSerach = (e) => {
     e.preventDefault();
     const searchInfo = e.target.serachInfo.value.toLowerCase();
+    console.log(searchInfo);
+    if (!searchInfo) {
+      url = `http://localhost:5000/allDonner/all`;
+      refetch();
+      return;
+    }
     url = `http://localhost:5000/allDonner/${searchInfo}`;
     refetch();
   };

@@ -14,6 +14,7 @@ import BannerList from "./Pages/Dashboard/BannerList";
 import DonnerList from "./Pages/Dashboard/DonnerList";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import AddNotice from "./Pages/Dashboard/AddNotice";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="addbanner" element={<AddBanner></AddBanner>}></Route>
           <Route path="bannerlist" element={<BannerList></BannerList>}></Route>
           <Route path="donnerlist" element={<DonnerList></DonnerList>}></Route>
+          <Route path="add-notice" element={<AddNotice></AddNotice>}></Route>
         </Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<Signup></Signup>}></Route>

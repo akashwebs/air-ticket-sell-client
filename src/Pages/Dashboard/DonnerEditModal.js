@@ -124,6 +124,12 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
       <input type="checkbox" id="donner_edit_modal" class="modal-toggle" />
       <div class="modal">
         <div class="modal-box w-2/3 md:w-2/4 sm:modal-middle max-w-5xl">
+          <label
+            for="donner_edit_modal"
+            class="btn btn-sm btn-circle absolute right-2 top-2"
+          >
+            ✕
+          </label>
           <h3 class="font-bold text-lg">Update Profile</h3>
           <span className="divider mt-1"></span>
           <form onSubmit={handleSubmit(HandleUpdateProfile)}>
@@ -425,15 +431,9 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
               <input
                 type={"submit"}
                 value="update photo"
-                className="btn btn-primary text-white"
+                className="btn btn-success text-white"
               />
             </form>
-          </div>
-
-          <div class="modal-action">
-            <label for="donner_edit_modal" class="btn">
-              Yay!
-            </label>
           </div>
         </div>
       </div>

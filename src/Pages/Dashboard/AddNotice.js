@@ -1,0 +1,54 @@
+import React from "react";
+import swal from "sweetalert";
+import Heading from "../../Shared/Heading";
+
+const AddNotice = () => {
+  const handleNotice = (e) => {
+    e.preventDefault();
+    if (e.target.notice.value.length < 1) {
+      alert("please write some notice ");
+      return;
+    }
+    const notice = { notice: e.target.notice.value };
+
+    const url = `http://localhost:5000/notice`;
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(notice),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          swal("", "", "success");
+          e.target.notice.value = "";
+        }
+      });
+  };
+
+  return (
+    <div>
+      <Heading>Notice</Heading>
+
+      <div class="card md:w-1/2 w-full bg-base-100 shadow-xl">
+        <form onSubmit={handleNotice} class="card-body">
+          <textarea
+            class="textarea textarea-primary"
+            placeholder="write notice"
+            rows={12}
+            name="notice"
+          ></textarea>
+          <div class="card-actions justify-end">
+            <button type="submit" class="btn btn-primary text-white">
+              Add Notice
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default AddNotice;
