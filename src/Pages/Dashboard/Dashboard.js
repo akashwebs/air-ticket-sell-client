@@ -24,6 +24,9 @@ const Dashboard = () => {
       <li>
         <Link to={"/add-notice"}>Add Notice</Link>
       </li>
+      <li>
+        <Link to={"/approved-request"}>Donner Request</Link>
+      </li>
     </>
   );
 
