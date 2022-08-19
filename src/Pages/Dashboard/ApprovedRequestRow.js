@@ -1,7 +1,12 @@
 import React from "react";
 
-const ApprovedRequestRow = ({ donner, setId, handleDaleteDonner }) => {
-  const { fullName, phone, _id, bloodGroup, img } = donner;
+const ApprovedRequestRow = ({
+  donner,
+  setId,
+  handleDaleteDonner,
+  handleApprovedDonner,
+}) => {
+  const { fullName, phone, _id, bloodGroup, img, email } = donner;
   return (
     <tr>
       <th>
@@ -38,7 +43,12 @@ const ApprovedRequestRow = ({ donner, setId, handleDaleteDonner }) => {
         >
           Delete
         </button>
-        <button class="btn btn-accent btn-xs text-black ml-2">Approved</button>
+        <button
+          onClick={() => handleApprovedDonner(donner)}
+          class="btn btn-accent btn-xs text-black ml-2"
+        >
+          Approved
+        </button>
       </td>
       <td></td>
     </tr>

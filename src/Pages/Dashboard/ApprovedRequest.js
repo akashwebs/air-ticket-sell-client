@@ -22,7 +22,7 @@ const ApprovedRequest = () => {
     return <Loading></Loading>;
   }
   const handleDaleteDonner = (id) => {
-    /*  const url = `http://localhost:5000/deleteDonnerProfile/${id}`;
+    const url = `http://localhost:5000/requestDelete/${id}`;
 
     swal({
       title: "Are you sure?",
@@ -46,7 +46,54 @@ const ApprovedRequest = () => {
       } else {
         swal(`your file is safe!`);
       }
-    }); */
+    });
+  };
+  const handleApprovedDonner = (profile) => {
+    const url = `http://localhost:5000/approvedRequest/${profile.email}`;
+    const postUrl = `http://localhost:5000/requestPost/${profile.email}`;
+    const profileInfo = { ...profile, approved: true };
+    delete profileInfo._id;
+
+    swal({
+      title: "Are you sure?",
+      text: `Approve it?`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((approve) => {
+      if (approve) {
+        // update or post main donner profile
+        fetch(postUrl, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(profileInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            refetch();
+          });
+        // update requst collection
+        fetch(url, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ request: false }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            refetch();
+          });
+
+        swal("donner profile approved", {
+          icon: "success",
+        });
+      } else {
+        swal(`cancled approved profile`);
+      }
+    });
   };
 
   return (
@@ -74,6 +121,7 @@ const ApprovedRequest = () => {
                   refetch={refetch}
                   setId={setId}
                   handleDaleteDonner={handleDaleteDonner}
+                  handleApprovedDonner={handleApprovedDonner}
                 ></ApprovedRequestRow>
               );
             })}
