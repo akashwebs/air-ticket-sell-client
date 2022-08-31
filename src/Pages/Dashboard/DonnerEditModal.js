@@ -25,6 +25,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
       .then((res) => res.json())
       .then((data) => {
         setDonner(data);
+        setStartDate(new Date(data?.birthday));
         setIsLoading(false);
       });
   }, [donnerId]);
@@ -96,7 +97,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
       email: data.email,
       phone: data.phone,
       fbID: data.fbID,
-      // birthday: date,
+      birthday: date,
       elegibale: data.elegibale,
       gender: data.gender,
       approved: true,
