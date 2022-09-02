@@ -164,7 +164,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     </span>
                   </label>
                   <select
-                    value={bloodGroup}
+                    defaultValue={bloodGroup}
                     {...register("bloodGroup", { required: true })}
                     class="select select-bordered"
                   >
@@ -205,7 +205,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     </span>
                   </label>
                   <select
-                    value={distric}
+                    defaultValue={distric}
                     {...register("distric", { required: true })}
                     class="select select-bordered"
                   >
@@ -289,7 +289,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     </span>
                   </label>
                   <select
-                    value={elegibale}
+                    defaultValue={elegibale}
                     {...register("elegibale", { required: true })}
                     class="select select-bordered"
                   >
@@ -314,7 +314,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     </span>
                   </label>
                   <select
-                    value={gender}
+                    defaultValue={gender}
                     {...register("gender", { required: true })}
                     class="select select-bordered"
                   >
