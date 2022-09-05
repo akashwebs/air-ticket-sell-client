@@ -1,13 +1,14 @@
 import getDaysInMonth from "date-fns/getDaysInMonth/index";
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
+import Footer from "../../Shared/Footer";
 import Header from "../Header";
 
 const Dashboard = () => {
   const dashboardMenu = (
     <>
       <li>
-        <Link to={"/overview"}>Overview</Link>
+        <Link to={"/"}>Overview</Link>
       </li>
       <li>
         <Link to={"/donor"}>Add Donor</Link>
@@ -46,6 +47,7 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
+      <Footer></Footer>
     </>
   );
 };

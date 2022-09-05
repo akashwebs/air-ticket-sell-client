@@ -29,7 +29,7 @@ function App() {
             </RequireAuth>
           }
         >
-          <Route path="overview" element={<Overview></Overview>}></Route>
+          <Route index element={<Overview></Overview>}></Route>
           <Route path="donor" element={<AddDonor></AddDonor>}></Route>
           <Route path="addbanner" element={<AddBanner></AddBanner>}></Route>
           <Route path="bannerlist" element={<BannerList></BannerList>}></Route>
@@ -41,7 +41,10 @@ function App() {
           ></Route>
         </Route>
         <Route path="/login" element={<Login></Login>}></Route>
-        <Route path="/signup" element={<Signup></Signup>}></Route>
+        <Route
+          path="/signupBondhonRegistration"
+          element={<Signup></Signup>}
+        ></Route>
       </Routes>
       <ToastContainer />
     </div>
