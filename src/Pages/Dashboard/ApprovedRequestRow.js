@@ -11,8 +11,8 @@ const ApprovedRequestRow = ({
     <tr>
       <th>
         {img ? (
-          <div class="avatar">
-            <div class="mask mask-squircle w-12 h-12">
+          <div className="avatar">
+            <div className="mask mask-squircle w-12 h-12">
               <img src={donner?.img} alt="profile" />
             </div>
           </div>
@@ -21,9 +21,9 @@ const ApprovedRequestRow = ({
         )}
       </th>
       <td>
-        <div class="flex items-center space-x-3">
+        <div className="flex items-center space-x-3">
           <div>
-            <div class="font-bold text-sm ">{fullName}</div>
+            <div className="font-bold text-sm ">{fullName}</div>
           </div>
         </div>
       </td>
@@ -32,20 +32,20 @@ const ApprovedRequestRow = ({
       <td>
         <label
           onClick={() => setId(donner)}
-          for="request-approved-modal"
-          class="btn btn-primary btn-xs text-white"
+          htmlFor="request-approved-modal"
+          className="btn btn-primary btn-xs text-white"
         >
           view Profile
         </label>
         <button
           onClick={() => handleDaleteDonner(_id)}
-          class="btn btn-warning btn-xs text-black ml-2"
+          className="btn btn-warning btn-xs text-black ml-2"
         >
           Delete
         </button>
         <button
           onClick={() => handleApprovedDonner(donner)}
-          class="btn btn-accent btn-xs text-black ml-2"
+          className="btn btn-accent btn-xs text-black ml-2"
         >
           Approved
         </button>

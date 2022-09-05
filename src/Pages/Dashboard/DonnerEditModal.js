@@ -122,23 +122,23 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
 
   return (
     <div>
-      <input type="checkbox" id="donner_edit_modal" class="modal-toggle" />
-      <div class="modal">
-        <div class="modal-box w-2/3 md:w-2/4 sm:modal-middle max-w-5xl">
+      <input type="checkbox" id="donner_edit_modal" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box w-2/3 md:w-2/4 sm:modal-middle max-w-5xl">
           <label
-            for="donner_edit_modal"
-            class="btn btn-sm btn-circle absolute right-2 top-2"
+            htmlFor="donner_edit_modal"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
           </label>
-          <h3 class="font-bold text-lg">Update Profile</h3>
+          <h3 className="font-bold text-lg">Update Profile</h3>
           <span className="divider mt-1"></span>
           <form onSubmit={handleSubmit(HandleUpdateProfile)}>
             <div className="grid md:grid-cols-2 gap-5">
               <div>
-                <div class="form-control w-full max-w-sm">
-                  <label class="label">
-                    <span class="label-text">
+                <div className="form-control w-full max-w-sm">
+                  <label className="label">
+                    <span className="label-text">
                       Full Name <span className="text-red-400">*</span>
                     </span>
                   </label>
@@ -147,26 +147,26 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     {...register("fullName", { required: true })}
                     type="text"
                     placeholder="Type here"
-                    class="input input-bordered w-full max-w-sm"
+                    className="input input-bordered w-full max-w-sm"
                   />
-                  <label class="label">
-                    <span class="label-text-alt text-red-600">
+                  <label className="label">
+                    <span className="label-text-alt text-red-600">
                       {errors.fullName?.type === "required" &&
                         "name is required Ex: Akash Shil"}
                     </span>
                   </label>
                 </div>
 
-                <div class="form-control w-full max-w-sm">
-                  <label class="label">
-                    <span class="label-text">
+                <div className="form-control w-full max-w-sm">
+                  <label className="label">
+                    <span className="label-text">
                       Blood Group <span className="text-red-400">*</span>{" "}
                     </span>
                   </label>
                   <select
                     defaultValue={donner?.bloodGroup}
                     {...register("bloodGroup", { required: true })}
-                    class="select select-bordered"
+                    className="select select-bordered"
                   >
                     <option value={"A+"}>A+</option>
                     <option value={"A-"}>A-</option>
@@ -177,37 +177,37 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     <option value={"O+"}>O+</option>
                     <option value={"O-"}>O-</option>
                   </select>
-                  <label class="label">
-                    <span class="label-text-alt text-red-600">
+                  <label className="label">
+                    <span className="label-text-alt text-red-600">
                       {errors.bloodGroup?.type === "required" &&
                         "please Select any blood group"}
                     </span>
                   </label>
                 </div>
 
-                <div class="form-control w-full max-w-sm">
-                  <label class="label">
-                    <span class="label-text">Full Address </span>
+                <div className="form-control w-full max-w-sm">
+                  <label className="label">
+                    <span className="label-text">Full Address </span>
                   </label>
                   <input
                     defaultValue={donner?.address}
                     {...register("address")}
                     type="text"
                     placeholder="ex: nawla/rahimanagar/kachua"
-                    class="input input-bordered w-full max-w-sm"
+                    className="input input-bordered w-full max-w-sm"
                   />
                 </div>
 
-                <div class="form-control w-full max-w-sm">
-                  <label class="label">
-                    <span class="label-text">
+                <div className="form-control w-full max-w-sm">
+                  <label className="label">
+                    <span className="label-text">
                       Distric <span className="text-red-400">*</span>
                     </span>
                   </label>
                   <select
                     defaultValue={donner?.distric}
                     {...register("distric", { required: true })}
-                    class="select select-bordered"
+                    className="select select-bordered"
                   >
                     <option value={"Dhaka"}>Dhaka</option>
                     <option value={"Faridpur"}>Faridpur</option>
@@ -274,30 +274,30 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     <option value={"Narail"}>Narail</option>
                     <option value={"Satkhira"}>Satkhira</option>
                   </select>
-                  <label class="label">
-                    <span class="label-text-alt text-red-600">
+                  <label className="label">
+                    <span className="label-text-alt text-red-600">
                       {errors.distric?.type === "required" &&
                         "please Select any blood group"}
                     </span>
                   </label>
                 </div>
 
-                <div class="form-control w-full max-w-sm">
-                  <label class="label">
-                    <span class="label-text">
+                <div className="form-control w-full max-w-sm">
+                  <label className="label">
+                    <span className="label-text">
                       Elegibale <span className="text-red-400">*</span>
                     </span>
                   </label>
                   <select
                     defaultValue={donner?.elegibale}
                     {...register("elegibale", { required: true })}
-                    class="select select-bordered"
+                    className="select select-bordered"
                   >
                     <option value={"Yes"}>Yes</option>
                     <option value={"No"}>No</option>
                   </select>
-                  <label class="label">
-                    <span class="label-text-alt text-red-600">
+                  <label className="label">
+                    <span className="label-text-alt text-red-600">
                       {errors.elegibale?.type === "required" &&
                         "please Select yes/no"}
                     </span>
@@ -307,30 +307,30 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
               {/* second div */}
 
               <div>
-                <div class="form-control w-full max-w-sm">
-                  <label class="label">
-                    <span class="label-text">
+                <div className="form-control w-full max-w-sm">
+                  <label className="label">
+                    <span className="label-text">
                       Gender <span className="text-red-400">*</span>
                     </span>
                   </label>
                   <select
                     defaultValue={donner?.gender}
                     {...register("gender", { required: true })}
-                    class="select select-bordered"
+                    className="select select-bordered"
                   >
                     <option value={"male"}>male</option>
                     <option value={"female"}>female</option>
                   </select>
-                  <label class="label">
-                    <span class="label-text-alt text-red-600">
+                  <label className="label">
+                    <span className="label-text-alt text-red-600">
                       {errors.gender?.type === "required" &&
                         "please Select any blood group"}
                     </span>
                   </label>
                 </div>
-                <div class="form-control w-full max-w-sm">
-                  <label class="label">
-                    <span class="label-text">Birthday Date:</span>
+                <div className="form-control w-full max-w-sm">
+                  <label className="label">
+                    <span className="label-text">Birthday Date:</span>
                   </label>
 
                   <DatePicker
@@ -340,9 +340,9 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                   />
                 </div>
 
-                <div class="form-control w-full max-w-sm">
-                  <label class="label">
-                    <span class="label-text">
+                <div className="form-control w-full max-w-sm">
+                  <label className="label">
+                    <span className="label-text">
                       Phone Number <span className="text-red-400">*</span>
                     </span>
                   </label>
@@ -352,13 +352,13 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     {...register("phone", { required: true })}
                     type="text"
                     placeholder="Type here"
-                    class="input input-bordered w-full max-w-sm"
+                    className="input input-bordered w-full max-w-sm"
                   />
                 </div>
 
-                <div class="form-control w-full max-w-sm">
-                  <label class="label">
-                    <span class="label-text">Email Address</span>
+                <div className="form-control w-full max-w-sm">
+                  <label className="label">
+                    <span className="label-text">Email Address</span>
                   </label>
 
                   <input
@@ -367,13 +367,13 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     type="email"
                     {...register("email")}
                     placeholder="Type here"
-                    class="input input-bordered w-full max-w-sm"
+                    className="input input-bordered w-full max-w-sm"
                   />
                 </div>
 
-                <div class="form-control w-full max-w-md">
-                  <label class="label">
-                    <span class="label-text">কতবার রক্ত দিয়েছেন?</span>
+                <div className="form-control w-full max-w-md">
+                  <label className="label">
+                    <span className="label-text">কতবার রক্ত দিয়েছেন?</span>
                   </label>
 
                   <input
@@ -381,12 +381,12 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     type="number"
                     {...register("donationCount")}
                     placeholder="Type Number"
-                    class="input input-bordered w-full max-w-md"
+                    className="input input-bordered w-full max-w-md"
                   />
                 </div>
-                <div class="form-control w-full max-w-md">
-                  <label class="label">
-                    <span class="label-text">Facebook Id profile URL</span>
+                <div className="form-control w-full max-w-md">
+                  <label className="label">
+                    <span className="label-text">Facebook Id profile URL</span>
                   </label>
 
                   <input
@@ -394,7 +394,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     type="text"
                     {...register("fbID")}
                     placeholder="please copy/paste fb url"
-                    class="input input-bordered w-full max-w-md"
+                    className="input input-bordered w-full max-w-md"
                   />
                 </div>
               </div>
@@ -410,12 +410,12 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
 
           <div className="mt-5">
             {/* for image update form */}
-            <h3 class="font-bold text-lg">Update Profile Photo</h3>
+            <h3 className="font-bold text-lg">Update Profile Photo</h3>
             <span className="divider my-1"></span>
             <form onSubmit={handleSubmit(HandleUpdateProfilePhoto)}>
-              <div class="form-control w-full max-w-md">
-                <label class="label">
-                  <span class="label-text">
+              <div className="form-control w-full max-w-md">
+                <label className="label">
+                  <span className="label-text">
                     Donor Photo
                     <small className="font-bold text-green-500">
                       (Photo size less then 700kb)

@@ -101,7 +101,7 @@ const DonnerList = () => {
               <select
                 onChange={(e) => handleGroupFilter(e)}
                 name="sliderFilter"
-                class="select select-bordered w-full md:w-15 ml-2"
+                className="select select-bordered w-full md:w-15 ml-2"
               >
                 <option selected>All</option>
                 <option>A+</option>
@@ -115,26 +115,26 @@ const DonnerList = () => {
               </select>
             </div>
             {/* serach data with phone, name */}
-            <form onSubmit={handleDonnerSerach} class="form-control ml-5">
-              <div class="input-group">
+            <form onSubmit={handleDonnerSerach} className="form-control ml-5">
+              <div className="input-group">
                 <input
                   name="serachInfo"
                   type="text"
                   placeholder="Search…"
-                  class="input input-bordered"
+                  className="input input-bordered"
                 />
-                <button type="submit" class="btn btn-square">
+                <button type="submit" className="btn btn-square">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
+                    className="h-6 w-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
                     <path
                       stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     />
                   </svg>
@@ -145,8 +145,8 @@ const DonnerList = () => {
         </div>
       </Heading>
 
-      <div class="overflow-x-auto w-full">
-        <table class="table w-full">
+      <div className="overflow-x-auto w-full">
+        <table className="table w-full">
           <thead>
             <tr>
               <th>S/N</th>

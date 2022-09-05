@@ -64,9 +64,9 @@ const BannerListRow = ({ bannerRow, index, refetch }) => {
     <tr>
       <th>{index}</th>
       <td>
-        <div class="flex items-center space-x-3">
-          <div class="avatar">
-            <div class="mask mask-squircle w-12 h-12">
+        <div className="flex items-center space-x-3">
+          <div className="avatar">
+            <div className="mask mask-squircle w-12 h-12">
               <img
                 src={
                   bannerRow?.bannerImage
@@ -78,7 +78,7 @@ const BannerListRow = ({ bannerRow, index, refetch }) => {
             </div>
           </div>
           <div>
-            <div class="font-bold text-sm ">{bannerRow?.bannerName}</div>
+            <div className="font-bold text-sm ">{bannerRow?.bannerName}</div>
           </div>
         </div>
       </td>
@@ -86,7 +86,7 @@ const BannerListRow = ({ bannerRow, index, refetch }) => {
         {bannerRow?.hide && (
           <button
             onClick={() => handleHide()}
-            class="btn btn-primary btn-xs text-white"
+            className="btn btn-primary btn-xs text-white"
           >
             unhide
           </button>
@@ -94,7 +94,7 @@ const BannerListRow = ({ bannerRow, index, refetch }) => {
         {!bannerRow?.hide && (
           <button
             onClick={() => handleHide()}
-            class="btn btn-primary btn-xs text-white"
+            className="btn btn-primary btn-xs text-white"
           >
             hide
           </button>
@@ -102,7 +102,7 @@ const BannerListRow = ({ bannerRow, index, refetch }) => {
 
         <button
           onClick={handleDeleteBanner}
-          class="btn btn-warning btn-xs text-black ml-2"
+          className="btn btn-warning btn-xs text-black ml-2"
         >
           Delete
         </button>

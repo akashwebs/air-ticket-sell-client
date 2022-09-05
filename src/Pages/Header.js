@@ -4,20 +4,19 @@ import auth from "../firebase.init";
 import logo from "../asstes/logo.png";
 import { Link } from "react-router-dom";
 
-
 const Header = () => {
   return (
-    <div class="navbar px-3 md:px-16 bg-slate-600 ">
-      <div class="flex-1">
-        <div class="drawer-content">
+    <div className="navbar px-3 md:px-16 bg-slate-600 ">
+      <div className="flex-1">
+        <div className="drawer-content">
           <label
-            for="dashboard-side-menu"
-            class="btn btn-circle swap mr-5 lg:hidden swap-rotate drawer-button"
+            htmlFor="dashboard-side-menu"
+            className="btn btn-circle swap mr-5 lg:hidden swap-rotate drawer-button"
           >
             <input type="checkbox" />
 
             <svg
-              class="swap-off fill-current"
+              className="swap-off fill-current"
               xmlns="http://www.w3.org/2000/svg"
               width="32"
               height="32"
@@ -27,7 +26,7 @@ const Header = () => {
             </svg>
 
             <svg
-              class="swap-on fill-current"
+              className="swap-on fill-current"
               xmlns="http://www.w3.org/2000/svg"
               width="32"
               height="32"
@@ -38,18 +37,20 @@ const Header = () => {
           </label>
         </div>
 
-        <Link to={'/'} class="text-white normal-case text-2xl">Dashboard</Link>
+        <Link to={"/"} className="text-white normal-case text-2xl">
+          Dashboard
+        </Link>
       </div>
-      <div class="flex-none">
-        <div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-            <div class="w-10 rounded-full">
+      <div className="flex-none">
+        <div className="dropdown dropdown-end">
+          <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
               <img src={logo} />
             </div>
           </label>
           <ul
-            tabindex="0"
-            class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            tabIndex="0"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li className="font-bold">
               <button onClick={() => signOut(auth)}>Log Out</button>

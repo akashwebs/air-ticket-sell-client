@@ -21,7 +21,9 @@ const BannerList = () => {
     error,
     data: bannerList,
     refetch,
-  } = useQuery(["allBannerListData"], () => fetch(url).then((res) => res.json()));
+  } = useQuery(["allBannerListData"], () =>
+    fetch(url).then((res) => res.json())
+  );
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -30,8 +32,8 @@ const BannerList = () => {
   return (
     <>
       <Heading>All Banner</Heading>
-      <div class="overflow-x-auto w-full">
-        <table class="table w-full">
+      <div className="overflow-x-auto w-full">
+        <table className="table w-full">
           <thead>
             <tr>
               <th>S/N</th>
@@ -42,7 +44,7 @@ const BannerList = () => {
                   <select
                     onChange={(e) => handleBannerFilter(e)}
                     name="sliderFilter"
-                    class="select select-bordered w-full md:w-15 ml-2"
+                    className="select select-bordered w-full md:w-15 ml-2"
                   >
                     <option disabled selected>
                       Filter

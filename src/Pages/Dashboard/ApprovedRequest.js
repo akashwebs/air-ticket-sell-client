@@ -122,8 +122,8 @@ const ApprovedRequest = () => {
   return (
     <div>
       <Heading>Donner Request</Heading>
-      <div class="overflow-x-auto w-full">
-        <table class="table w-full">
+      <div className="overflow-x-auto w-full">
+        <table className="table w-full">
           <thead>
             <tr>
               <th>Image</th>
@@ -139,7 +139,7 @@ const ApprovedRequest = () => {
             {currentItems?.map((donner, index) => {
               return (
                 <ApprovedRequestRow
-                  key={donner.donner?._id}
+                  key={donner?._id}
                   donner={donner}
                   refetch={refetch}
                   setId={setId}

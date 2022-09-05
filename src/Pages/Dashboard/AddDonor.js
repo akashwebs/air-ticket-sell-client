@@ -78,9 +78,9 @@ const AddDonor = () => {
     <div className="pb-8">
       <Heading>Add Blood Donor</Heading>
       <form onSubmit={handleSubmit(HandleAddDonor)}>
-        <div class="form-control w-full max-w-md">
-          <label class="label">
-            <span class="label-text">
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">
               Full Name <span className="text-red-400">*</span>
             </span>
           </label>
@@ -88,10 +88,10 @@ const AddDonor = () => {
             {...register("fullName", { required: true })}
             type="text"
             placeholder="Type here"
-            class="input input-bordered w-full max-w-md"
+            className="input input-bordered w-full max-w-md"
           />
-          <label class="label">
-            <span class="label-text-alt text-red-600">
+          <label className="label">
+            <span className="label-text-alt text-red-600">
               {" "}
               {errors.fullName?.type === "required" &&
                 "name is required Ex: Akash Shil"}
@@ -99,15 +99,15 @@ const AddDonor = () => {
           </label>
         </div>
 
-        <div class="form-control w-full max-w-md">
-          <label class="label">
-            <span class="label-text">
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">
               Blood Group <span className="text-red-400">*</span>
             </span>
           </label>
           <select
             {...register("bloodGroup", { required: true })}
-            class="select select-bordered"
+            className="select select-bordered"
           >
             <option disabled selected>
               Select
@@ -121,34 +121,34 @@ const AddDonor = () => {
             <option>O+</option>
             <option>O-</option>
           </select>
-          <label class="label">
-            <span class="label-text-alt text-red-600">
+          <label className="label">
+            <span className="label-text-alt text-red-600">
               {" "}
               {errors.bloodGroup?.type === "required" &&
                 "please Select any blood group"}
             </span>
           </label>
         </div>
-        <div class="form-control w-full max-w-md">
-          <label class="label">
-            <span class="label-text">Full Address </span>
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">Full Address </span>
           </label>
           <input
             {...register("address")}
             type="text"
             placeholder="ex: nawla/rahimanagar/kachua"
-            class="input input-bordered w-full max-w-md"
+            className="input input-bordered w-full max-w-md"
           />
         </div>
-        <div class="form-control w-full max-w-md">
-          <label class="label">
-            <span class="label-text">
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">
               Distric <span className="text-red-400">*</span>
             </span>
           </label>
           <select
             {...register("distric", { required: true })}
-            class="select select-bordered"
+            className="select select-bordered"
           >
             <option disabled selected>
               Select Distric
@@ -218,8 +218,8 @@ const AddDonor = () => {
             <option>Narail</option>
             <option>Satkhira</option>
           </select>
-          <label class="label">
-            <span class="label-text-alt text-red-600">
+          <label className="label">
+            <span className="label-text-alt text-red-600">
               {" "}
               {errors.distric?.type === "required" &&
                 "please Select any blood group"}
@@ -227,9 +227,9 @@ const AddDonor = () => {
           </label>
         </div>
 
-        <div class="form-control w-full max-w-md">
-          <label class="label">
-            <span class="label-text">Birthday Date</span>
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">Birthday Date</span>
           </label>
 
           <DatePicker
@@ -239,9 +239,9 @@ const AddDonor = () => {
           />
         </div>
 
-        <div class="form-control w-full max-w-md">
-          <label class="label">
-            <span class="label-text">
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">
               Phone Number <span className="text-red-400">*</span>
             </span>
           </label>
@@ -250,32 +250,32 @@ const AddDonor = () => {
             {...register("phone", { required: true })}
             type="text"
             placeholder="Type here"
-            class="input input-bordered w-full max-w-md"
+            className="input input-bordered w-full max-w-md"
           />
         </div>
 
-        <div class="form-control w-full max-w-md">
-          <label class="label">
-            <span class="label-text">Email Address</span>
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">Email Address</span>
           </label>
 
           <input
             type="email"
             {...register("email")}
             placeholder="Type here"
-            class="input input-bordered w-full max-w-md"
+            className="input input-bordered w-full max-w-md"
           />
         </div>
         {/* after */}
-        <div class="form-control w-full max-w-sm">
-          <label class="label">
-            <span class="label-text">
+        <div className="form-control w-full max-w-sm">
+          <label className="label">
+            <span className="label-text">
               Gender <span className="text-red-400">*</span>
             </span>
           </label>
           <select
             {...register("gender", { required: true })}
-            class="select select-bordered"
+            className="select select-bordered"
           >
             <option disabled selected>
               Select gender
@@ -283,22 +283,22 @@ const AddDonor = () => {
             <option>male</option>
             <option>female</option>
           </select>
-          <label class="label">
-            <span class="label-text-alt text-red-600">
+          <label className="label">
+            <span className="label-text-alt text-red-600">
               {errors.gender?.type === "required" &&
                 "please Select any gender "}
             </span>
           </label>
         </div>
-        <div class="form-control w-full max-w-sm">
-          <label class="label">
-            <span class="label-text">
+        <div className="form-control w-full max-w-sm">
+          <label className="label">
+            <span className="label-text">
               Elegibale <span className="text-red-400">*</span>
             </span>
           </label>
           <select
             {...register("elegibale", { required: true })}
-            class="select select-bordered"
+            className="select select-bordered"
           >
             <option disabled selected>
               Select
@@ -306,39 +306,39 @@ const AddDonor = () => {
             <option>Yes</option>
             <option>No</option>
           </select>
-          <label class="label">
-            <span class="label-text-alt text-red-600">
+          <label className="label">
+            <span className="label-text-alt text-red-600">
               {errors.elegibale?.type === "required" && "please Select yes/no"}
             </span>
           </label>
         </div>
-        <div class="form-control w-full max-w-md">
-          <label class="label">
-            <span class="label-text">কতবার রক্ত দিয়েছেন?</span>
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">কতবার রক্ত দিয়েছেন?</span>
           </label>
 
           <input
             type="number"
             {...register("donationCount")}
             placeholder="Type Number"
-            class="input input-bordered w-full max-w-md"
+            className="input input-bordered w-full max-w-md"
           />
         </div>
-        <div class="form-control w-full max-w-md">
-          <label class="label">
-            <span class="label-text">Facebook Id profile URL</span>
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">Facebook Id profile URL</span>
           </label>
 
           <input
             type="text"
             {...register("fbID")}
             placeholder="please copy/paste fb url"
-            class="input input-bordered w-full max-w-md"
+            className="input input-bordered w-full max-w-md"
           />
         </div>
-        <div class="form-control w-full max-w-md">
-          <label class="label">
-            <span class="label-text">
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">
               Donor Photo{" "}
               <small className="font-bold text-green-500">
                 (Photo size less then 700kb){" "}
@@ -356,7 +356,7 @@ const AddDonor = () => {
         <input
           type="submit"
           value={"Submit"}
-          class="btn btn-bordered w-full max-w-md"
+          className="btn btn-bordered w-full max-w-md"
         />
       </form>
     </div>

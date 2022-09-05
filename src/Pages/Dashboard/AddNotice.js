@@ -32,16 +32,16 @@ const AddNotice = () => {
     <div>
       <Heading>Notice</Heading>
 
-      <div class="card md:w-1/2 w-full bg-base-100 shadow-xl">
-        <form onSubmit={handleNotice} class="card-body">
+      <div className="card md:w-1/2 w-full bg-base-100 shadow-xl">
+        <form onSubmit={handleNotice} className="card-body">
           <textarea
-            class="textarea textarea-primary"
+            className="textarea textarea-primary"
             placeholder="write notice"
             rows={12}
             name="notice"
           ></textarea>
-          <div class="card-actions justify-end">
-            <button type="submit" class="btn btn-primary text-white">
+          <div className="card-actions justify-end">
+            <button type="submit" className="btn btn-primary text-white">
               Add Notice
             </button>
           </div>

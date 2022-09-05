@@ -60,9 +60,9 @@ const AddBanner = () => {
     <div>
       <Heading>Add Banner</Heading>
       <form onSubmit={handleSubmit(HandleAddBanner)}>
-        <div class="form-control w-full max-w-md">
-          <label class="label">
-            <span class="label-text">
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">
               Banner Titile <span className="text-red-400">*</span>
             </span>
           </label>
@@ -70,12 +70,12 @@ const AddBanner = () => {
             type="text"
             {...register("bannerName")}
             placeholder="Enter Banner title"
-            class="input input-bordered w-full max-w-md"
+            className="input input-bordered w-full max-w-md"
           />
         </div>
-        <div class="form-control w-full max-w-md">
-          <label class="label">
-            <span class="label-text">
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">
               Extarnal photo URL
               <small>
                 (if you dont upload photo, you can use extranal photo url)
@@ -87,12 +87,12 @@ const AddBanner = () => {
             type="text"
             {...register("url")}
             placeholder="enter copy/paste photo url"
-            class="input input-bordered w-full max-w-md"
+            className="input input-bordered w-full max-w-md"
           />
         </div>
-        <div class="form-control w-full max-w-md">
-          <label class="label">
-            <span class="label-text">
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">
               Slider Photo
               <small className="font-bold text-green-500">
                 (Photo size less then 700kb)
@@ -110,7 +110,7 @@ const AddBanner = () => {
         <input
           type="submit"
           value={"Submit"}
-          class="btn btn-bordered w-full max-w-md"
+          className="btn btn-bordered w-full max-w-md"
         />
       </form>
     </div>

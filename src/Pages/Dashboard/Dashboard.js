@@ -34,15 +34,22 @@ const Dashboard = () => {
   return (
     <>
       <Header></Header>
-      <div class="drawer drawer-mobile">
-        <input id="dashboard-side-menu" type="checkbox" class="drawer-toggle" />
+      <div className="drawer drawer-mobile">
+        <input
+          id="dashboard-side-menu"
+          type="checkbox"
+          className="drawer-toggle"
+        />
         <div className="drawer-content">
           <Outlet></Outlet>
           {/* <!-- Page content here --> */}
         </div>
-        <div class="drawer-side">
-          <label for="dashboard-side-menu" class="drawer-overlay"></label>
-          <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+        <div className="drawer-side">
+          <label
+            htmlFor="dashboard-side-menu"
+            className="drawer-overlay"
+          ></label>
+          <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
             {dashboardMenu}
           </ul>
         </div>

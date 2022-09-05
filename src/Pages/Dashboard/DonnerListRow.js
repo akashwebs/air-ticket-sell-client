@@ -7,14 +7,14 @@ const DonnerListRow = ({ donner, index, setDonnerId, handleDaleteDonner }) => {
     <tr>
       <th>{index}</th>
       <td>
-        <div class="flex items-center space-x-3">
-          <div class="avatar">
-            <div class="mask mask-squircle w-12 h-12">
+        <div className="flex items-center space-x-3">
+          <div className="avatar">
+            <div className="mask mask-squircle w-12 h-12">
               <img src={img} alt="banner image" />
             </div>
           </div>
           <div>
-            <div class="font-bold text-sm ">{fullName}</div>
+            <div className="font-bold text-sm ">{fullName}</div>
           </div>
         </div>
       </td>
@@ -23,14 +23,14 @@ const DonnerListRow = ({ donner, index, setDonnerId, handleDaleteDonner }) => {
       <td>
         <label
           onClick={() => setDonnerId(_id)}
-          for="donner_edit_modal"
-          class="btn btn-primary btn-xs text-white"
+          htmlFor="donner_edit_modal"
+          className="btn btn-primary btn-xs text-white"
         >
           Edit
         </label>
         <button
           onClick={() => handleDaleteDonner(_id)}
-          class="btn btn-warning btn-xs text-black ml-2"
+          className="btn btn-warning btn-xs text-black ml-2"
         >
           Delete
         </button>

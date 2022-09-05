@@ -29,16 +29,16 @@ const Overview = () => {
     <div>
       <Heading>Overview</Heading>
       <div className="flex">
-        <div class="stats shadow mr-2">
-          <div class="stat">
-            <div class="stat-title">Total Donner</div>
-            <div class="stat-value">{allDonners.lenght}</div>
+        <div className="stats shadow mr-2">
+          <div className="stat">
+            <div className="stat-title">Total Donner</div>
+            <div className="stat-value">{allDonners.lenght}</div>
           </div>
         </div>
-        <div class="stats shadow mr-2">
-          <div class="stat">
-            <div class="stat-title">Donner Request</div>
-            <div class="stat-value">{allRequest.lenght}</div>
+        <div className="stats shadow mr-2">
+          <div className="stat">
+            <div className="stat-title">Donner Request</div>
+            <div className="stat-value">{allRequest.lenght}</div>
           </div>
         </div>
       </div>

@@ -21,22 +21,22 @@ const RequestModals = ({ id }) => {
         <input
           type="checkbox"
           id="request-approved-modal"
-          class="modal-toggle"
+          className="modal-toggle"
         />
-        <div class="modal">
-          <div class="modal-box w-2/3 md:w-2/4 sm:modal-middle max-w-5xl">
+        <div className="modal">
+          <div className="modal-box w-2/3 md:w-2/4 sm:modal-middle max-w-5xl">
             <label
-              for="request-approved-modal"
-              class="btn btn-sm btn-circle absolute right-2 top-2"
+              htmlFor="request-approved-modal"
+              className="btn btn-sm btn-circle absolute right-2 top-2"
             >
               ✕
             </label>
-            <h3 class="font-bold text-lg">Requested Profile Info</h3>
+            <h3 className="font-bold text-lg">Requested Profile Info</h3>
             <span className="divider mt-1"></span>
             <div className="grid grid-cols-1 md:grid-cols-2 md:gap-5 gap-0">
               <div>
-                <div class="overflow-x-auto">
-                  <table class="table w-full">
+                <div className="overflow-x-auto">
+                  <table className="table w-full">
                     <thead>
                       <tr>
                         <th>Title</th>
@@ -84,8 +84,8 @@ const RequestModals = ({ id }) => {
                         <td>Photo</td>
                         <td>
                           {img ? (
-                            <div class="avatar">
-                              <div class="mask mask-squircle w-12 h-12">
+                            <div className="avatar">
+                              <div className="mask mask-squircle w-12 h-12">
                                 <img src={img} alt="profile" />
                               </div>
                             </div>
@@ -114,7 +114,7 @@ const RequestModals = ({ id }) => {
               </div>
               {/* second table */}
               <div>
-                <table class="table w-full">
+                <table className="table w-full">
                   <thead>
                     <tr>
                       <th>Title</th>
