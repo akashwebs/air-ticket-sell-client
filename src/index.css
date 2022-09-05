@@ -15,3 +15,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* for pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  
+  gap: 5px;
+ 
+}
+
+.pagination-active a {
+  background-color: #5AB1BB;
+  color: #fff;
+}

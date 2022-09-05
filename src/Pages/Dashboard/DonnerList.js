@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 import swal from "sweetalert";
 import Heading from "../../Shared/Heading";
 import Loading from "../../Shared/Loading";
@@ -31,24 +32,32 @@ const DonnerList = () => {
   };
 
   const {
-    isLoading,
-    error,
     data: donners,
+    isLoading,
     refetch,
-  } = useQuery(["allDonnerList"], () => fetch(url).then((res) => res.json()));
+  } = useQuery(["allDonnerListForDonnerLiist"], () =>
+    fetch(url).then((res) => res.json())
+  );
 
-  if (isLoading) {
-    return <Loading></Loading>;
-  }
+  // pagination
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
 
-  const handleBannerFilter = (e) => {
-    /*
-    e.preventDefault();
-    let newUrl = e.target.value;
-    url = `http://localhost:5000/allBanner/${newUrl}`;
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 12;
 
-    refetch(); */
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(donners?.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(donners?.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, donners]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % donners?.length;
+    setItemOffset(newOffset);
   };
+
+  // paginatoin end
 
   const handleDaleteDonner = (id) => {
     const url = `http://localhost:5000/deleteDonnerProfile/${id}`;
@@ -77,6 +86,10 @@ const DonnerList = () => {
       }
     });
   };
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div>
@@ -146,7 +159,7 @@ const DonnerList = () => {
             </tr>
           </thead>
           <tbody>
-            {donners?.map((donner, index) => (
+            {currentItems?.map((donner, index) => (
               <DonnerListRow
                 key={donner?._id}
                 donner={donner}
@@ -159,7 +172,28 @@ const DonnerList = () => {
           </tbody>
 
           <tfoot>
-            <tr>{/* herer pagination */}</tr>
+            <tr className="">
+              {/* paginate */}
+              <td colSpan={5} className="">
+                <div>
+                  <ReactPaginate
+                    breakLabel="..."
+                    nextLabel=">>"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={1}
+                    marginPagesDisplayed={1}
+                    pageCount={pageCount}
+                    previousLabel="<<"
+                    renderOnZeroPageCount={null}
+                    containerClassName="btn-group pagination"
+                    pageLinkClassName="btn btn-sm"
+                    previousLinkClassName="btn-sm btn"
+                    nextLinkClassName="btn btn-sm"
+                    activeClassName="pagination-active"
+                  />
+                </div>
+              </td>
+            </tr>
           </tfoot>
         </table>
       </div>

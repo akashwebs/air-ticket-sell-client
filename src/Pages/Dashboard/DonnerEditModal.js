@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 const DonnerEditModal = ({ donnerId, refetch }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [donner, setDonner] = useState();
-  const [isLoding, setIsLoading] = useState(true);
+  const [isLoding, setIsLoading] = useState(false);
   const {
     register,
     formState: { errors },
@@ -26,15 +26,15 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
       .then((data) => {
         setDonner(data);
         setStartDate(new Date(data?.birthday));
-        setIsLoading(false);
+        setIsLoading(0);
       });
   }, [donnerId]);
-
+  /* 
   if (isLoding) {
     return <Loading></Loading>;
   }
-
-  const {
+ */
+  /* const {
     address,
     birthday,
     bloodGroup,
@@ -48,8 +48,9 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
     phone,
     gender,
   } = donner;
-  console.log(startDate, birthday);
+  console.log(startDate, birthday); */
   // update profile
+
   const imgUrl = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imageKey}`;
 
   const HandleUpdateProfilePhoto = (data) => {
@@ -112,7 +113,6 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
     })
       .then((res) => res.json())
       .then((profile) => {
-        console.log(profile);
         if (profile?.modifiedCount) {
           toast.success("profile updated");
           refetch();
@@ -143,7 +143,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     </span>
                   </label>
                   <input
-                    defaultValue={fullName}
+                    defaultValue={donner?.fullName}
                     {...register("fullName", { required: true })}
                     type="text"
                     placeholder="Type here"
@@ -164,7 +164,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     </span>
                   </label>
                   <select
-                    defaultValue={bloodGroup}
+                    defaultValue={donner?.bloodGroup}
                     {...register("bloodGroup", { required: true })}
                     class="select select-bordered"
                   >
@@ -190,7 +190,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     <span class="label-text">Full Address </span>
                   </label>
                   <input
-                    defaultValue={address}
+                    defaultValue={donner?.address}
                     {...register("address")}
                     type="text"
                     placeholder="ex: nawla/rahimanagar/kachua"
@@ -205,7 +205,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     </span>
                   </label>
                   <select
-                    defaultValue={distric}
+                    defaultValue={donner?.distric}
                     {...register("distric", { required: true })}
                     class="select select-bordered"
                   >
@@ -289,7 +289,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     </span>
                   </label>
                   <select
-                    defaultValue={elegibale}
+                    defaultValue={donner?.elegibale}
                     {...register("elegibale", { required: true })}
                     class="select select-bordered"
                   >
@@ -314,7 +314,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     </span>
                   </label>
                   <select
-                    defaultValue={gender}
+                    defaultValue={donner?.gender}
                     {...register("gender", { required: true })}
                     class="select select-bordered"
                   >
@@ -348,7 +348,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                   </label>
 
                   <input
-                    defaultValue={phone}
+                    defaultValue={donner?.phone}
                     {...register("phone", { required: true })}
                     type="text"
                     placeholder="Type here"
@@ -362,7 +362,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                   </label>
 
                   <input
-                    defaultValue={email}
+                    defaultValue={donner?.email}
                     disabled
                     type="email"
                     {...register("email")}
@@ -377,7 +377,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                   </label>
 
                   <input
-                    defaultValue={donationCount}
+                    defaultValue={donner?.donationCount}
                     type="number"
                     {...register("donationCount")}
                     placeholder="Type Number"
@@ -390,7 +390,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                   </label>
 
                   <input
-                    defaultValue={fbID}
+                    defaultValue={donner?.fbID}
                     type="text"
                     {...register("fbID")}
                     placeholder="please copy/paste fb url"

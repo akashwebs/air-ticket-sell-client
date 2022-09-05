@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 import swal from "sweetalert";
 import Heading from "../../Shared/Heading";
 import Loading from "../../Shared/Loading";
@@ -16,8 +17,30 @@ const ApprovedRequest = () => {
     error,
     data: donners,
     refetch,
-  } = useQuery(["donnerRequests"], () => fetch(url).then((res) => res.json()));
-  console.log(donners);
+  } = useQuery(["donnerRequestsApproved"], () =>
+    fetch(url).then((res) => res.json())
+  );
+
+  // pagination
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 12;
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(donners?.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(donners?.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, donners]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % donners?.length;
+    setItemOffset(newOffset);
+  };
+
+  // paginatoin end
+
   if (isLoading) {
     return <Loading></Loading>;
   }
@@ -113,7 +136,7 @@ const ApprovedRequest = () => {
             </tr>
           </thead>
           <tbody>
-            {donners?.map((donner, index) => {
+            {currentItems?.map((donner, index) => {
               return (
                 <ApprovedRequestRow
                   key={donner.donner?._id}
@@ -128,7 +151,28 @@ const ApprovedRequest = () => {
           </tbody>
 
           <tfoot>
-            <tr>{/* herer pagination */}</tr>
+            <tr className="">
+              {/* paginate */}
+              <td colSpan={5} className="">
+                <div>
+                  <ReactPaginate
+                    breakLabel="..."
+                    nextLabel=">>"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={1}
+                    marginPagesDisplayed={1}
+                    pageCount={pageCount}
+                    previousLabel="<<"
+                    renderOnZeroPageCount={null}
+                    containerClassName="btn-group pagination"
+                    pageLinkClassName="btn btn-sm"
+                    previousLinkClassName="btn-sm btn"
+                    nextLinkClassName="btn btn-sm"
+                    activeClassName="pagination-active"
+                  />
+                </div>
+              </td>
+            </tr>
           </tfoot>
         </table>
       </div>
