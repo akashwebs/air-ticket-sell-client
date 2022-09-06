@@ -38,7 +38,7 @@ const AllFamilyMember = () => {
   const {
     isLoading,
     error,
-    data: member,
+    data: members,
     refetch,
   } = useQuery(["allMemberProfile"], () =>
     fetch(url).then((res) => res.json())
@@ -63,7 +63,7 @@ const AllFamilyMember = () => {
             </tr>
           </thead>
           <tbody>
-            {member?.map((member, index) => (
+            {members?.map((member, index) => (
               <FamilyMemberRow
                 key={member?._id}
                 member={member}
