@@ -16,6 +16,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import AddNotice from "./Pages/Dashboard/AddNotice";
 import ApprovedRequest from "./Pages/Dashboard/ApprovedRequest";
+import AddFamilyMember from "./Pages/Dashboard/AddFamilyMember";
+import AllFamilyMember from "./Pages/Dashboard/AllFamilyMember";
 
 function App() {
   return (
@@ -35,6 +37,14 @@ function App() {
           <Route path="bannerlist" element={<BannerList></BannerList>}></Route>
           <Route path="donnerlist" element={<DonnerList></DonnerList>}></Route>
           <Route path="add-notice" element={<AddNotice></AddNotice>}></Route>
+          <Route
+            path="add-family-member"
+            element={<AddFamilyMember></AddFamilyMember>}
+          ></Route>
+          <Route
+            path="all-family-member"
+            element={<AllFamilyMember></AllFamilyMember>}
+          ></Route>
           <Route
             path="approved-request"
             element={<ApprovedRequest></ApprovedRequest>}

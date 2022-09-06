@@ -8,8 +8,8 @@ import { toast } from "react-toastify";
 
 const DonnerEditModal = ({ donnerId, refetch }) => {
   const [startDate, setStartDate] = useState(new Date());
-  const [donner, setDonner] = useState();
-  const [isLoding, setIsLoading] = useState(false);
+  const [donner, setDonner] = useState({});
+
   const {
     register,
     formState: { errors },
@@ -19,14 +19,12 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
 
   const date = format(startDate, "PP");
   useEffect(() => {
-    setIsLoading(true);
     const url = `http://localhost:5000/donnerProfile/${donnerId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setDonner(data);
         setStartDate(new Date(data?.birthday));
-        setIsLoading(0);
       });
   }, [donnerId]);
   /* 
@@ -81,8 +79,6 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
               console.log(photo);
               if (photo?.modifiedCount) {
                 toast.success("profile updated");
-                reset();
-                refetch();
               }
             });
         }
@@ -115,7 +111,6 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
       .then((profile) => {
         if (profile?.modifiedCount) {
           toast.success("profile updated");
-          refetch();
         }
       });
   };
@@ -143,18 +138,12 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     </span>
                   </label>
                   <input
-                    defaultValue={donner?.fullName}
+                    defaultValue={donner.fullName}
                     {...register("fullName", { required: true })}
                     type="text"
                     placeholder="Type here"
                     className="input input-bordered w-full max-w-sm"
                   />
-                  <label className="label">
-                    <span className="label-text-alt text-red-600">
-                      {errors.fullName?.type === "required" &&
-                        "name is required Ex: Akash Shil"}
-                    </span>
-                  </label>
                 </div>
 
                 <div className="form-control w-full max-w-sm">
@@ -168,6 +157,9 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     {...register("bloodGroup", { required: true })}
                     className="select select-bordered"
                   >
+                    <option disabled hidden selected>
+                      select
+                    </option>
                     <option value={"A+"}>A+</option>
                     <option value={"A-"}>A-</option>
                     <option value={"B+"}>B+</option>

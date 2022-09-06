@@ -28,6 +28,12 @@ const Dashboard = () => {
       <li>
         <Link to={"/approved-request"}>Donner Request</Link>
       </li>
+      <li>
+        <Link to={"/add-family-member"}>Add Family Member</Link>
+      </li>
+      <li>
+        <Link to={"/all-family-member"}>All Family Member</Link>
+      </li>
     </>
   );
 
