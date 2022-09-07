@@ -18,6 +18,7 @@ import AddNotice from "./Pages/Dashboard/AddNotice";
 import ApprovedRequest from "./Pages/Dashboard/ApprovedRequest";
 import AddFamilyMember from "./Pages/Dashboard/AddFamilyMember";
 import AllFamilyMember from "./Pages/Dashboard/AllFamilyMember";
+import AddPost from "./Pages/Dashboard/AddPost";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
             path="add-family-member"
             element={<AddFamilyMember></AddFamilyMember>}
           ></Route>
+          <Route path="add-post" element={<AddPost></AddPost>}></Route>
           <Route
             path="all-family-member"
             element={<AllFamilyMember></AllFamilyMember>}

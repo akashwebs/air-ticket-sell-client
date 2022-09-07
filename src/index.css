@@ -28,3 +28,7 @@ code {
   background-color: #5AB1BB;
   color: #fff;
 }
+
+.jodit-status-bar{
+  visibility: hidden;
+}
