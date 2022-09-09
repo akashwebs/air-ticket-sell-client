@@ -31,6 +31,7 @@ const AddPost = () => {
           image: result?.data?.url,
           title: data.titile,
           content: content,
+          expect: data.expect,
         };
 
         fetch("http://localhost:5000/add-post", {
@@ -65,6 +66,20 @@ const AddPost = () => {
             type="text"
             {...register("titile")}
             placeholder="Enter Banner title"
+            className="input input-bordered w-full max-w-xl"
+            required
+          />
+        </div>
+        <div className="form-control w-full max-w-xl">
+          <label className="label">
+            <span className="label-text">
+              Short Description <span className="text-red-400">*</span>
+            </span>
+          </label>
+          <textarea
+            cols={8}
+            {...register("expect")}
+            placeholder="type Short Descrition"
             className="input input-bordered w-full max-w-xl"
             required
           />

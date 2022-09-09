@@ -74,7 +74,7 @@ const AllPost = () => {
             </tr>
           </thead>
           <tbody>
-            {posts?.map((post, index) => (
+            {currentItems?.map((post, index) => (
               <Post
                 key={post?._id}
                 post={post}
