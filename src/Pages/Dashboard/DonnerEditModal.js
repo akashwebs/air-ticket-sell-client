@@ -309,7 +309,7 @@ const DonnerEditModal = ({ donner, refetch }) => {
                   <label className="label">
                     <span className="label-text">
                       Last Donation Date{" "}
-                      <span className="text-sm">"MM/DD/YYYY"</span>
+                      <span className="text-sm">"DD/MM/YYYY"</span>
                     </span>
                   </label>
                   <input

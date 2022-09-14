@@ -33,7 +33,9 @@ const AddFamilyMember = () => {
             whatsapp: data.whatsapp,
             instagram: data.instagram,
             orders: 100,
+            catagories: data.catagories,
           };
+          console.log(member);
 
           fetch("https://rokto-bondon-server.vercel.app/add-family-member", {
             method: "POST",
@@ -137,7 +139,24 @@ const AddFamilyMember = () => {
             className="input input-bordered mb-3 w-full "
           />
         </div>
-
+        <div className="form-control w-full max-w-md">
+          <label className="label">
+            <span className="label-text">
+              Select catagories <span className="text-red-400">*</span>
+            </span>
+          </label>
+          <select
+            {...register("catagories")}
+            className="select select-bordered"
+          >
+            <option hidden disabled selected>
+              Select
+            </option>
+            <option>family</option>
+            <option>upodeshta</option>
+          </select>
+        </div>
+        <br />
         <input
           type="submit"
           value={"Submit"}

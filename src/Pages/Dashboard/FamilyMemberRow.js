@@ -85,10 +85,10 @@ const FamilyMemberRow = ({
           Delete
         </button>
       </td>
-      <td>
+      <td>``
         <form onSubmit={handleOrders}>
           <input
-            className="input input-bordered w-12 px-2 mr-2"
+            className="input input-bordered w-16 px-2 mr-2"
             defaultValue={member?.orders}
             name="orders"
             type={"number"}

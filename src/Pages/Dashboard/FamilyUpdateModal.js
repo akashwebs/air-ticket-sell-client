@@ -29,7 +29,8 @@ const FamilyUpdateModal = ({ idName, refetch }) => {
     reset,
   } = useForm();
 
-  const HandleUpdateMember = (data) => {
+  const HandleUpdateMember = (e) => {
+    e.preventDefault();
     const member = {
       fullName,
       position,
@@ -110,10 +111,10 @@ const FamilyUpdateModal = ({ idName, refetch }) => {
             >
               ✕
             </label>
-            <h3 className="font-bold text-lg">Requested Profile Info</h3>
+            <h3 className="font-bold text-lg">Update Member info</h3>
             <span className="divider mt-1"></span>
             <div>
-              <form onSubmit={handleSubmit(HandleUpdateMember)}>
+              <form onSubmit={HandleUpdateMember}>
                 <div className="form-control w-full max-w-md">
                   <label className="label">
                     <span className="label-text">
@@ -135,12 +136,11 @@ const FamilyUpdateModal = ({ idName, refetch }) => {
                     </span>
                   </label>
                   <input
-                    {...register("position")}
                     type="text"
                     placeholder="Type here"
                     className="input input-bordered w-full max-w-md"
                     value={position}
-                    onChange={(e) => setfullName(e.target.value)}
+                    onChange={(e) => setposition(e.target.value)}
                   />
                 </div>
                 <div className="form-control w-full max-w-md">
@@ -148,12 +148,11 @@ const FamilyUpdateModal = ({ idName, refetch }) => {
                     <span className="label-text">Facebook Id</span>
                   </label>
                   <input
-                    {...register("facebook")}
                     type="text"
                     placeholder="Type here"
                     className="input input-bordered w-full max-w-md"
                     value={facebook}
-                    onChange={(e) => setfullName(e.target.value)}
+                    onChange={(e) => setfacebook(e.target.value)}
                   />
                 </div>
                 <div className="form-control w-full max-w-md">
@@ -161,12 +160,11 @@ const FamilyUpdateModal = ({ idName, refetch }) => {
                     <span className="label-text">whatsapp Number</span>
                   </label>
                   <input
-                    {...register("whatsapp")}
                     type="text"
                     placeholder="Type here"
                     className="input input-bordered w-full max-w-md"
                     value={whatsapp}
-                    onChange={(e) => setfullName(e.target.value)}
+                    onChange={(e) => setwhatsapp(e.target.value)}
                   />
                 </div>
                 <div className="form-control w-full max-w-md">
@@ -174,18 +172,17 @@ const FamilyUpdateModal = ({ idName, refetch }) => {
                     <span className="label-text">Instagram Id</span>
                   </label>
                   <input
-                    {...register("instagram")}
                     type="text"
                     placeholder="Type here"
                     className="input input-bordered w-full max-w-md"
                     value={instagram}
-                    onChange={(e) => setfullName(e.target.value)}
+                    onChange={(e) => setinstagram(e.target.value)}
                   />
                 </div>
 
                 <input
                   type="submit"
-                  defaultValue={"Update"}
+                  value={"Update"}
                   className="btn mt-2 btn-bordered w-full max-w-md"
                 />
               </form>
