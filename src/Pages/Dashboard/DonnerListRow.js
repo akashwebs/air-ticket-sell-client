@@ -22,7 +22,7 @@ const DonnerListRow = ({ donner, index, setDonnerId, handleDaleteDonner }) => {
       <td>{bloodGroup}</td>
       <td>
         <label
-          onClick={() => setDonnerId(_id)}
+          onClick={() => setDonnerId(donner)}
           htmlFor="donner_edit_modal"
           className="btn btn-primary btn-xs text-white"
         >

@@ -8,26 +8,26 @@ import DonnerEditModal from "./DonnerEditModal";
 import DonnerListRow from "./DonnerListRow";
 
 const DonnerList = () => {
-  const [donnerId, setDonnerId] = useState("");
+  const [donner, setDonnerId] = useState("");
 
-  let url = `http://localhost:5000/allDonner/all`;
+  let url = `https://rokto-bondon-server.vercel.app/allDonner/all`;
 
   const handleDonnerSerach = (e) => {
     e.preventDefault();
     const searchInfo = e.target.serachInfo.value.toLowerCase();
 
     if (!searchInfo) {
-      url = `http://localhost:5000/allDonner/all`;
+      url = `https://rokto-bondon-server.vercel.app/allDonner/all`;
       refetch();
       return;
     }
-    url = `http://localhost:5000/allDonner/${searchInfo}`;
+    url = `https://rokto-bondon-server.vercel.app/allDonner/${searchInfo}`;
     refetch();
   };
 
   const handleGroupFilter = (e) => {
     const filterGroup = e.target.value.toLowerCase();
-    url = `http://localhost:5000/allDonner/${filterGroup}`;
+    url = `https://rokto-bondon-server.vercel.app/allDonner/${filterGroup}`;
     refetch();
   };
 
@@ -60,7 +60,7 @@ const DonnerList = () => {
   // paginatoin end
 
   const handleDaleteDonner = (id) => {
-    const url = `http://localhost:5000/deleteDonnerProfile/${id}`;
+    const url = `https://rokto-bondon-server.vercel.app/deleteDonnerProfile/${id}`;
 
     swal({
       title: "Are you sure?",
@@ -197,7 +197,7 @@ const DonnerList = () => {
           </tfoot>
         </table>
       </div>
-      <DonnerEditModal donnerId={donnerId} refetch={refetch}></DonnerEditModal>
+      <DonnerEditModal donner={donner} refetch={refetch}></DonnerEditModal>
     </div>
   );
 };

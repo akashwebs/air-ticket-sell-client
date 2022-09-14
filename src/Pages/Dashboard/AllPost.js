@@ -15,7 +15,7 @@ const AllPost = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        const url = `http://localhost:5000/delete-post/${id}`;
+        const url = `https://rokto-bondon-server.vercel.app/delete-post/${id}`;
         fetch(url, {
           method: "DELETE",
         })
@@ -33,7 +33,7 @@ const AllPost = () => {
     });
   };
 
-  let url = `http://localhost:5000/all-post`;
+  let url = `https://rokto-bondon-server.vercel.app/all-post`;
 
   const {
     isLoading,

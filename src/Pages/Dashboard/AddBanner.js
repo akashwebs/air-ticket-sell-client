@@ -33,7 +33,7 @@ const AddBanner = () => {
             orders: 1,
           };
 
-          fetch("http://localhost:5000/addBanner", {
+          fetch("https://rokto-bondon-server.vercel.app/addBanner", {
             method: "POST",
             headers: {
               "content-type": "application/json",

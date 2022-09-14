@@ -5,7 +5,7 @@ const BannerListRow = ({ bannerRow, index, refetch }) => {
   // const [hide, setHide] = useState(false);
 
   const handleHide = () => {
-    const url = `http://localhost:5000/updatebanner/${bannerRow?._id}`;
+    const url = `https://rokto-bondon-server.vercel.app/updatebanner/${bannerRow?._id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -27,7 +27,7 @@ const BannerListRow = ({ bannerRow, index, refetch }) => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        const url = `http://localhost:5000/deleteBanner/${bannerRow?._id}`;
+        const url = `https://rokto-bondon-server.vercel.app/deleteBanner/${bannerRow?._id}`;
         fetch(url, {
           method: "DELETE",
         })
@@ -47,7 +47,7 @@ const BannerListRow = ({ bannerRow, index, refetch }) => {
 
   const handleOrders = (e) => {
     e.preventDefault();
-    const url = `http://localhost:5000/updatebanner/${bannerRow?._id}`;
+    const url = `https://rokto-bondon-server.vercel.app/updatebanner/${bannerRow?._id}`;
     fetch(url, {
       method: "PUT",
       headers: {

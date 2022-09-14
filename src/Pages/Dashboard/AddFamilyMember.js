@@ -34,7 +34,7 @@ const AddFamilyMember = () => {
             instagram: data.instagram,
           };
 
-          fetch("http://localhost:5000/add-family-member", {
+          fetch("https://rokto-bondon-server.vercel.app/add-family-member", {
             method: "POST",
             headers: {
               "content-type": "application/json",

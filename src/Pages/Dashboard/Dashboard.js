@@ -52,15 +52,12 @@ const Dashboard = () => {
           type="checkbox"
           className="drawer-toggle"
         />
-        <div className="drawer-content">
+        <div className="drawer-content px-3 md:px-0">
           <Outlet></Outlet>
           {/* <!-- Page content here --> */}
         </div>
-        <div className="drawer-side">
-          <label
-            htmlFor="dashboard-side-menu"
-            className="drawer-overlay"
-          ></label>
+        <div className="drawer-side ">
+          <label for="dashboard-side-menu" className="drawer-overlay"></label>
           <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
             {dashboardMenu}
           </ul>

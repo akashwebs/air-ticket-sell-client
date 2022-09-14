@@ -11,7 +11,7 @@ const AddNotice = () => {
     }
     const notice = { notice: e.target.notice.value };
 
-    const url = `http://localhost:5000/notice`;
+    const url = `https://rokto-bondon-server.vercel.app/notice`;
     fetch(url, {
       method: "PUT",
       headers: {

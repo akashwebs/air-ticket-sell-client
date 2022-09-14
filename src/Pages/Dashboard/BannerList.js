@@ -6,12 +6,12 @@ import Heading from "../../Shared/Heading";
 
 const BannerList = () => {
   let filterUrl = "all";
-  let url = `http://localhost:5000/allBanner/${filterUrl}`;
+  let url = `https://rokto-bondon-server.vercel.app/allBanner/${filterUrl}`;
 
   const handleBannerFilter = (e) => {
     e.preventDefault();
     let newUrl = e.target.value;
-    url = `http://localhost:5000/allBanner/${newUrl}`;
+    url = `https://rokto-bondon-server.vercel.app/allBanner/${newUrl}`;
 
     refetch();
   };

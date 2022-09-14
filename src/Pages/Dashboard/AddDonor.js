@@ -49,7 +49,7 @@ const AddDonor = () => {
             approved: true,
           };
 
-          fetch("http://localhost:5000/addDonner", {
+          fetch("https://rokto-bondon-server.vercel.app/addDonner", {
             method: "POST",
             headers: {
               "content-type": "application/json",

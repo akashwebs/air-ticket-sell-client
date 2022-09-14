@@ -5,8 +5,10 @@ import FamilyMemberRow from "./FamilyMemberRow";
 import { useQuery } from "@tanstack/react-query";
 import swal from "sweetalert";
 import ReactPaginate from "react-paginate";
+import FamilyUpdateModal from "./FamilyUpdateModal";
 
 const AllFamilyMember = () => {
+  const [memberId, setMemberId] = useState("");
   const handleDeleteMember = (id) => {
     swal({
       title: "Are you sure?",
@@ -16,7 +18,7 @@ const AllFamilyMember = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        const url = `http://localhost:5000/delete-family-member/${id}`;
+        const url = `https://rokto-bondon-server.vercel.app/delete-family-member/${id}`;
         fetch(url, {
           method: "DELETE",
         })
@@ -34,7 +36,7 @@ const AllFamilyMember = () => {
     });
   };
 
-  let url = `http://localhost:5000/all-family-member`;
+  let url = `https://rokto-bondon-server.vercel.app/all-family-member`;
 
   const {
     isLoading,
@@ -48,7 +50,7 @@ const AllFamilyMember = () => {
   const [pageCount, setPageCount] = useState(0);
 
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 15;
+  const itemsPerPage = 20;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -77,16 +79,18 @@ const AllFamilyMember = () => {
               <th>Position</th>
               <th>social Link</th>
               <th>action</th>
+              <th>Orders</th>
             </tr>
           </thead>
           <tbody>
-            {members?.map((member, index) => (
+            {currentItems?.map((member, index) => (
               <FamilyMemberRow
                 key={member?._id}
                 member={member}
                 index={index + 1}
                 refetch={refetch}
                 handleDeleteMember={handleDeleteMember}
+                setMemberId={setMemberId}
               ></FamilyMemberRow>
             ))}
           </tbody>
@@ -116,6 +120,10 @@ const AllFamilyMember = () => {
             </tr>
           </tfoot>
         </table>
+        <FamilyUpdateModal
+          idName={memberId}
+          refetch={refetch}
+        ></FamilyUpdateModal>
       </div>
     </>
   );

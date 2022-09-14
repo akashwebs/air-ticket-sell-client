@@ -6,9 +6,9 @@ import swal from "sweetalert";
 import Loading from "../../Shared/Loading";
 import { toast } from "react-toastify";
 
-const DonnerEditModal = ({ donnerId, refetch }) => {
+const DonnerEditModal = ({ donner, refetch }) => {
   const [startDate, setStartDate] = useState(new Date());
-  const [donner, setDonner] = useState({});
+  // const [donner, setDonner] = useState({});
 
   const {
     register,
@@ -18,15 +18,22 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
   } = useForm();
 
   const date = format(startDate, "PP");
-  useEffect(() => {
-    const url = `http://localhost:5000/donnerProfile/${donnerId}`;
+  // const url = `https://rokto-bondon-server.vercel.app/donnerProfile/${donnerId}`;
+
+  /*  useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setDonner(data);
-        setStartDate(new Date(data?.birthday));
+        // setStartDate(data[0].birthday);
+        if (data?.birthday) {
+          return setStartDate(new Date(data?.birthday));
+        }
+        setStartDate(new Date());
       });
-  }, [donnerId]);
+  }, [donnerId]); */
+
+  console.log("from modal", donner);
   /* 
   if (isLoding) {
     return <Loading></Loading>;
@@ -49,6 +56,8 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
   console.log(startDate, birthday); */
   // update profile
 
+  console.log("from modal", donner);
+
   const imgUrl = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imageKey}`;
 
   const HandleUpdateProfilePhoto = (data) => {
@@ -67,13 +76,16 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
             img: result?.data?.url,
           };
 
-          fetch(`http://localhost:5000/updateProfile/${donnerId}`, {
-            method: "PUT",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(photo),
-          })
+          fetch(
+            `https://rokto-bondon-server.vercel.app/updateProfile/${donner._id}`,
+            {
+              method: "PUT",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(photo),
+            }
+          )
             .then((res) => res.json())
             .then((photo) => {
               console.log(photo);
@@ -100,13 +112,16 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
       approved: true,
     };
 
-    fetch(`http://localhost:5000/updateProfile/${donnerId}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updateDonner),
-    })
+    fetch(
+      `https://rokto-bondon-server.vercel.app/updateProfile/${donner?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updateDonner),
+      }
+    )
       .then((res) => res.json())
       .then((profile) => {
         if (profile?.modifiedCount) {
@@ -128,6 +143,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
           </label>
           <h3 className="font-bold text-lg">Update Profile</h3>
           <span className="divider mt-1"></span>
+
           <form onSubmit={handleSubmit(HandleUpdateProfile)}>
             <div className="grid md:grid-cols-2 gap-5">
               <div>
@@ -138,12 +154,18 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     </span>
                   </label>
                   <input
-                    defaultValue={donner.fullName}
+                    defaultValue={donner?.fullName}
                     {...register("fullName", { required: true })}
                     type="text"
-                    placeholder="Type here"
+                    placeholder="Name"
                     className="input input-bordered w-full max-w-sm"
                   />
+                  <label className="label">
+                    <span className="label-text-alt text-red-600">
+                      {errors.fullName?.type === "required" &&
+                        "name is required Ex: Akash Shil"}
+                    </span>
+                  </label>
                 </div>
 
                 <div className="form-control w-full max-w-sm">
@@ -157,7 +179,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     {...register("bloodGroup", { required: true })}
                     className="select select-bordered"
                   >
-                    <option disabled hidden selected>
+                    <option selected hidden>
                       select
                     </option>
                     <option value={"A+"}>A+</option>
@@ -185,7 +207,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     defaultValue={donner?.address}
                     {...register("address")}
                     type="text"
-                    placeholder="ex: nawla/rahimanagar/kachua"
+                    placeholder=""
                     className="input input-bordered w-full max-w-sm"
                   />
                 </div>
@@ -201,6 +223,9 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     {...register("distric", { required: true })}
                     className="select select-bordered"
                   >
+                    <option selected hidden>
+                      select
+                    </option>
                     <option value={"Dhaka"}>Dhaka</option>
                     <option value={"Faridpur"}>Faridpur</option>
                     <option value={"Gazipur"}>Gazipur</option>
@@ -295,6 +320,21 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     </span>
                   </label>
                 </div>
+
+                <div className="form-control w-full max-w-sm">
+                  <label className="label">
+                    <span className="label-text">
+                      Last Donation Date <span className="text-red-400">*</span>
+                    </span>
+                  </label>
+                  <input
+                    defaultValue={donner?.lastDonationDate}
+                    {...register("lastDonationDate")}
+                    type="text"
+                    placeholder="MM/DD/YYYY"
+                    className="input input-bordered w-full max-w-sm"
+                  />
+                </div>
               </div>
               {/* second div */}
 
@@ -310,6 +350,9 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     {...register("gender", { required: true })}
                     className="select select-bordered"
                   >
+                    <option selected hidden>
+                      select
+                    </option>
                     <option value={"male"}>male</option>
                     <option value={"female"}>female</option>
                   </select>
@@ -322,17 +365,19 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                 </div>
                 <div className="form-control w-full max-w-sm">
                   <label className="label">
-                    <span className="label-text">Birthday Date:</span>
+                    <span className="label-text">Birthday Date: </span>
                   </label>
 
                   <DatePicker
                     selected={startDate}
                     className="input input-bordered w-full max-w-xs"
-                    onChange={(date) => setStartDate(date)}
+                    onChange={(date) => setStartDate(date ? date : new Date())}
+                    showYearDropdown
+                    scrollableMonthYearDropdown
                   />
                 </div>
 
-                <div className="form-control w-full max-w-sm">
+                <div className="form-control w-full max-w-sm mt-3">
                   <label className="label">
                     <span className="label-text">
                       Phone Number <span className="text-red-400">*</span>
@@ -348,7 +393,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                   />
                 </div>
 
-                <div className="form-control w-full max-w-sm">
+                <div className="form-control w-full max-w-sm  mt-3">
                   <label className="label">
                     <span className="label-text">Email Address</span>
                   </label>
@@ -363,7 +408,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                   />
                 </div>
 
-                <div className="form-control w-full max-w-md">
+                <div className="form-control w-full max-w-md  mt-3">
                   <label className="label">
                     <span className="label-text">কতবার রক্ত দিয়েছেন?</span>
                   </label>
@@ -376,7 +421,7 @@ const DonnerEditModal = ({ donnerId, refetch }) => {
                     className="input input-bordered w-full max-w-md"
                   />
                 </div>
-                <div className="form-control w-full max-w-md">
+                <div className="form-control w-full max-w-md  mt-3">
                   <label className="label">
                     <span className="label-text">Facebook Id profile URL</span>
                   </label>

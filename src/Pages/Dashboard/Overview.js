@@ -11,14 +11,18 @@ const Overview = () => {
     isLoading,
     refetch,
   } = useQuery(["allDonnerinoverviewpage"], () =>
-    fetch("http://localhost:5000/allDonner-count").then((res) => res.json())
+    fetch("https://rokto-bondon-server.vercel.app/allDonner-count").then(
+      (res) => res.json()
+    )
   );
   const {
     data: allRequest,
     isLoading: requestLoading,
     refetch: requestRefetch,
   } = useQuery(["allRequestinoverviewpage"], () =>
-    fetch("http://localhost:5000/allRequest-count").then((res) => res.json())
+    fetch("https://rokto-bondon-server.vercel.app/allRequest-count").then(
+      (res) => res.json()
+    )
   );
 
   if (isLoading || requestLoading) {

@@ -20,10 +20,11 @@ import AddFamilyMember from "./Pages/Dashboard/AddFamilyMember";
 import AllFamilyMember from "./Pages/Dashboard/AllFamilyMember";
 import AddPost from "./Pages/Dashboard/AddPost";
 import AllPost from "./Pages/Dashboard/AllPost";
+import FamilyUpdateModal from "./Pages/Dashboard/FamilyUpdateModal";
 
 function App() {
   return (
-    <div className="">
+    <div className="px-2 md:px-0">
       <Routes>
         <Route
           path="/"
@@ -43,6 +44,7 @@ function App() {
             path="add-family-member"
             element={<AddFamilyMember></AddFamilyMember>}
           ></Route>
+
           <Route path="add-post" element={<AddPost></AddPost>}></Route>
           <Route path="all-post" element={<AllPost></AllPost>}></Route>
           <Route

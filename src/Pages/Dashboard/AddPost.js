@@ -34,7 +34,7 @@ const AddPost = () => {
           expect: data.expect,
         };
 
-        fetch("http://localhost:5000/add-post", {
+        fetch("https://rokto-bondon-server.vercel.app/add-post", {
           method: "POST",
           headers: {
             "content-type": "application/json",

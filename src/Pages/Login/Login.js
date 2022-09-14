@@ -74,11 +74,6 @@ const Login = () => {
                 className="input input-bordered"
               />
               <small className="text-red-500">{errors.password?.message}</small>
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
             </div>
             <div className="form-control mt-6">
               <button type="submit" className="btn btn-primary">

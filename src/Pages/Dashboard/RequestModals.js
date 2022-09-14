@@ -13,6 +13,8 @@ const RequestModals = ({ id }) => {
     birthday,
     fbID,
     donationCount,
+    gender,
+    lastDonationDate,
   } = id;
 
   return (
@@ -108,6 +110,18 @@ const RequestModals = ({ id }) => {
                           )}
                         </td>
                       </tr>
+                      <tr>
+                        <td>gender</td>
+                        <td>
+                          {gender ? (
+                            gender
+                          ) : (
+                            <button className="btn btn-xs bg-red-600">
+                              Messing
+                            </button>
+                          )}
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -138,7 +152,7 @@ const RequestModals = ({ id }) => {
                       <td>Elegibale</td>
                       <td>
                         {elegibale ? (
-                          phone
+                          elegibale
                         ) : (
                           <button className="btn btn-xs bg-red-600">
                             Messing
@@ -189,6 +203,18 @@ const RequestModals = ({ id }) => {
                       <td>
                         {donationCount ? (
                           donationCount
+                        ) : (
+                          <button className="btn btn-xs bg-red-600">
+                            Messing
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Last Donation</td>
+                      <td>
+                        {lastDonationDate ? (
+                          lastDonationDate
                         ) : (
                           <button className="btn btn-xs bg-red-600">
                             Messing

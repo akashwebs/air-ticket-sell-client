@@ -10,7 +10,7 @@ import RequestModals from "./RequestModals";
 const ApprovedRequest = () => {
   const [id, setId] = useState("");
 
-  const url = `http://localhost:5000/approvedRequestDashboard`;
+  const url = `https://rokto-bondon-server.vercel.app/approvedRequestDashboard`;
 
   const {
     isLoading,
@@ -45,7 +45,7 @@ const ApprovedRequest = () => {
     return <Loading></Loading>;
   }
   const handleDaleteDonner = (id) => {
-    const url = `http://localhost:5000/requestDelete/${id}`;
+    const url = `https://rokto-bondon-server.vercel.app/requestDelete/${id}`;
 
     swal({
       title: "Are you sure?",
@@ -72,8 +72,8 @@ const ApprovedRequest = () => {
     });
   };
   const handleApprovedDonner = (profile) => {
-    const url = `http://localhost:5000/approvedRequest/${profile.email}`;
-    const postUrl = `http://localhost:5000/requestPost/${profile.email}`;
+    const url = `https://rokto-bondon-server.vercel.app/approvedRequest/${profile.email}`;
+    const postUrl = `https://rokto-bondon-server.vercel.app/requestPost/${profile.email}`;
     const profileInfo = { ...profile, approved: true };
     delete profileInfo._id;
 
