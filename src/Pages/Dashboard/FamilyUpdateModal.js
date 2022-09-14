@@ -12,7 +12,7 @@ const FamilyUpdateModal = ({ idName, refetch }) => {
   const [whatsapp, setwhatsapp] = useState(null);
   const [instagram, setinstagram] = useState(null);
 
-  const url = `http://localhost:5000/family-member-single/${idName}`;
+  const url = `https://rokto-bondon-server.vercel.app/family-member-single/${idName}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())

@@ -32,6 +32,7 @@ const AddFamilyMember = () => {
             facebook: data.facebook,
             whatsapp: data.whatsapp,
             instagram: data.instagram,
+            orders: 100,
           };
 
           fetch("https://rokto-bondon-server.vercel.app/add-family-member", {

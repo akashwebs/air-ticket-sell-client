@@ -13,7 +13,8 @@ const FamilyMemberRow = ({
 }) => {
   const handleOrders = (e) => {
     e.preventDefault();
-    const url = `http://localhost:5000/family-data-order-set/${member?._id}`;
+   
+    const url = `https://rokto-bondon-server.vercel.app/update-family-member/${member?._id}`;
     fetch(url, {
       method: "PUT",
       headers: {
