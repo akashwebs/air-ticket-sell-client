@@ -8,7 +8,42 @@ import { toast } from "react-toastify";
 
 const DonnerEditModal = ({ donner, refetch }) => {
   const [startDate, setStartDate] = useState(new Date());
-  // const [donner, setDonner] = useState({});
+  const date = format(startDate, "PP");
+
+  const [address, setaddress] = useState(null);
+  const [birthday, setbirthday] = useState(null);
+  const [bloodGroup, setbloodGroup] = useState(null);
+  const [distric, setdistric] = useState(null);
+  const [donationCount, setdonationCount] = useState(null);
+  const [elegibale, setelegibale] = useState(null);
+  const [email, setemail] = useState(null);
+  const [fbID, setfbID] = useState(null);
+  const [fullName, setfullName] = useState(null);
+  const [img, setimg] = useState(null);
+  const [phone, setphone] = useState(null);
+  const [gender, setgender] = useState(null);
+  const [lastDonationDate, setlastDonationDate] = useState(null);
+
+  useEffect(() => {
+    setaddress(donner.address);
+    setbirthday(donner.birthday);
+    setbloodGroup(donner.bloodGroup);
+    setdistric(donner.distric);
+    setdonationCount(donner.donationCount);
+    setelegibale(donner.elegibale);
+    setemail(donner.email);
+    setfbID(donner.fbID);
+    setfullName(donner.fullName);
+    setimg(donner.img);
+    setphone(donner.phone);
+    setlastDonationDate(donner.lastDonationDate);
+    setgender(donner.gender);
+
+    if (birthday) {
+      return setStartDate(new Date(birthday));
+    }
+    setStartDate(new Date());
+  }, [donner]);
 
   const {
     register,
@@ -16,48 +51,6 @@ const DonnerEditModal = ({ donner, refetch }) => {
     handleSubmit,
     reset,
   } = useForm();
-
-  const date = format(startDate, "PP");
-  // const url = `https://rokto-bondon-server.vercel.app/donnerProfile/${donnerId}`;
-
-  /*  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setDonner(data);
-        // setStartDate(data[0].birthday);
-        if (data?.birthday) {
-          return setStartDate(new Date(data?.birthday));
-        }
-        setStartDate(new Date());
-      });
-  }, [donnerId]); */
-
-  console.log("from modal", donner);
-  /* 
-  if (isLoding) {
-    return <Loading></Loading>;
-  }
- */
-  /* const {
-    address,
-    birthday,
-    bloodGroup,
-    distric,
-    donationCount,
-    elegibale,
-    email,
-    fbID,
-    fullName,
-    img,
-    phone,
-    gender,
-  } = donner;
-  console.log(startDate, birthday); */
-  // update profile
-
-  console.log("from modal", donner);
-
   const imgUrl = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imageKey}`;
 
   const HandleUpdateProfilePhoto = (data) => {
@@ -98,19 +91,21 @@ const DonnerEditModal = ({ donner, refetch }) => {
   };
   const HandleUpdateProfile = (data) => {
     const updateDonner = {
-      fullName: data.fullName,
-      bloodGroup: data.bloodGroup,
-      distric: data.distric,
-      address: data.address,
-      donationCount: data.donationCount,
-      email: data.email,
-      phone: data.phone,
-      fbID: data.fbID,
+      fullName,
+      bloodGroup,
+      distric,
+      address,
+      donationCount,
+      email,
+      phone,
+      fbID,
       birthday: date,
-      elegibale: data.elegibale,
-      gender: data.gender,
+      elegibale,
+      gender,
+      lastDonationDate,
       approved: true,
     };
+    console.log(updateDonner);
 
     fetch(
       `https://rokto-bondon-server.vercel.app/updateProfile/${donner?._id}`,
@@ -126,6 +121,7 @@ const DonnerEditModal = ({ donner, refetch }) => {
       .then((profile) => {
         if (profile?.modifiedCount) {
           toast.success("profile updated");
+          refetch();
         }
       });
   };
@@ -154,11 +150,11 @@ const DonnerEditModal = ({ donner, refetch }) => {
                     </span>
                   </label>
                   <input
-                    defaultValue={donner?.fullName}
-                    {...register("fullName", { required: true })}
                     type="text"
                     placeholder="Name"
                     className="input input-bordered w-full max-w-sm"
+                    value={fullName}
+                    onChange={(e) => setfullName(e.target.value)}
                   />
                   <label className="label">
                     <span className="label-text-alt text-red-600">
@@ -175,8 +171,8 @@ const DonnerEditModal = ({ donner, refetch }) => {
                     </span>
                   </label>
                   <select
-                    defaultValue={donner?.bloodGroup}
-                    {...register("bloodGroup", { required: true })}
+                    value={bloodGroup}
+                    onChange={(e) => setbloodGroup(e.target.value)}
                     className="select select-bordered"
                   >
                     <option selected hidden>
@@ -204,8 +200,8 @@ const DonnerEditModal = ({ donner, refetch }) => {
                     <span className="label-text">Full Address </span>
                   </label>
                   <input
-                    defaultValue={donner?.address}
-                    {...register("address")}
+                    value={address}
+                    onChange={(e) => setaddress(e.target.value)}
                     type="text"
                     placeholder=""
                     className="input input-bordered w-full max-w-sm"
@@ -219,8 +215,8 @@ const DonnerEditModal = ({ donner, refetch }) => {
                     </span>
                   </label>
                   <select
-                    defaultValue={donner?.distric}
-                    {...register("distric", { required: true })}
+                    value={distric}
+                    onChange={(e) => setdistric(e.target.value)}
                     className="select select-bordered"
                   >
                     <option selected hidden>
@@ -291,12 +287,6 @@ const DonnerEditModal = ({ donner, refetch }) => {
                     <option value={"Narail"}>Narail</option>
                     <option value={"Satkhira"}>Satkhira</option>
                   </select>
-                  <label className="label">
-                    <span className="label-text-alt text-red-600">
-                      {errors.distric?.type === "required" &&
-                        "please Select any blood group"}
-                    </span>
-                  </label>
                 </div>
 
                 <div className="form-control w-full max-w-sm">
@@ -306,30 +296,25 @@ const DonnerEditModal = ({ donner, refetch }) => {
                     </span>
                   </label>
                   <select
-                    defaultValue={donner?.elegibale}
-                    {...register("elegibale", { required: true })}
+                    value={elegibale}
+                    onChange={(e) => setelegibale(e.target.value)}
                     className="select select-bordered"
                   >
                     <option value={"Yes"}>Yes</option>
                     <option value={"No"}>No</option>
                   </select>
-                  <label className="label">
-                    <span className="label-text-alt text-red-600">
-                      {errors.elegibale?.type === "required" &&
-                        "please Select yes/no"}
-                    </span>
-                  </label>
                 </div>
 
                 <div className="form-control w-full max-w-sm">
                   <label className="label">
                     <span className="label-text">
-                      Last Donation Date <span className="text-red-400">*</span>
+                      Last Donation Date{" "}
+                      <span className="text-sm">"MM/DD/YYYY"</span>
                     </span>
                   </label>
                   <input
-                    defaultValue={donner?.lastDonationDate}
-                    {...register("lastDonationDate")}
+                    value={lastDonationDate}
+                    onChange={(e) => setlastDonationDate(e.target.value)}
                     type="text"
                     placeholder="MM/DD/YYYY"
                     className="input input-bordered w-full max-w-sm"
@@ -346,8 +331,8 @@ const DonnerEditModal = ({ donner, refetch }) => {
                     </span>
                   </label>
                   <select
-                    defaultValue={donner?.gender}
-                    {...register("gender", { required: true })}
+                    value={gender}
+                    onChange={(e) => setgender(e.target.value)}
                     className="select select-bordered"
                   >
                     <option selected hidden>
@@ -356,12 +341,6 @@ const DonnerEditModal = ({ donner, refetch }) => {
                     <option value={"male"}>male</option>
                     <option value={"female"}>female</option>
                   </select>
-                  <label className="label">
-                    <span className="label-text-alt text-red-600">
-                      {errors.gender?.type === "required" &&
-                        "please Select any blood group"}
-                    </span>
-                  </label>
                 </div>
                 <div className="form-control w-full max-w-sm">
                   <label className="label">
@@ -385,8 +364,8 @@ const DonnerEditModal = ({ donner, refetch }) => {
                   </label>
 
                   <input
-                    defaultValue={donner?.phone}
-                    {...register("phone", { required: true })}
+                    value={phone}
+                    onChange={(e) => setphone(e.target.value)}
                     type="text"
                     placeholder="Type here"
                     className="input input-bordered w-full max-w-sm"
@@ -399,7 +378,7 @@ const DonnerEditModal = ({ donner, refetch }) => {
                   </label>
 
                   <input
-                    defaultValue={donner?.email}
+                    value={email}
                     disabled
                     type="email"
                     {...register("email")}
@@ -414,9 +393,9 @@ const DonnerEditModal = ({ donner, refetch }) => {
                   </label>
 
                   <input
-                    defaultValue={donner?.donationCount}
+                    value={donationCount}
+                    onChange={(e) => setdonationCount(e.target.value)}
                     type="number"
-                    {...register("donationCount")}
                     placeholder="Type Number"
                     className="input input-bordered w-full max-w-md"
                   />
@@ -427,9 +406,9 @@ const DonnerEditModal = ({ donner, refetch }) => {
                   </label>
 
                   <input
-                    defaultValue={donner?.fbID}
+                    value={fbID}
+                    onChange={(e) => setfbID(e.target.value)}
                     type="text"
-                    {...register("fbID")}
                     placeholder="please copy/paste fb url"
                     className="input input-bordered w-full max-w-md"
                   />
