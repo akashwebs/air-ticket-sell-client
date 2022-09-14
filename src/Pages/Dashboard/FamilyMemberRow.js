@@ -13,7 +13,7 @@ const FamilyMemberRow = ({
 }) => {
   const handleOrders = (e) => {
     e.preventDefault();
-   
+
     const url = `https://rokto-bondon-server.vercel.app/update-family-member/${member?._id}`;
     fetch(url, {
       method: "PUT",
@@ -72,7 +72,7 @@ const FamilyMemberRow = ({
       </td>
       <td>
         <label
-          onClick={() => setMemberId(member._id)}
+          onClick={() => setMemberId(member)}
           className="btn btn-info btn-xs text-black ml-2"
           htmlFor="family-update-modal"
         >

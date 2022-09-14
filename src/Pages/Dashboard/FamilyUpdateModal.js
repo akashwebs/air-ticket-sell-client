@@ -14,17 +14,14 @@ const FamilyUpdateModal = ({ idName, refetch }) => {
 
   const url = `https://rokto-bondon-server.vercel.app/family-member-single/${idName}`;
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setFamily(data);
-        setfullName(data.fullName);
-        setposition(data.position);
-        setfacebook(data.facebook);
-        setwhatsapp(data.whatsapp);
-        setinstagram(data.instagram);
-      });
+    setFamily(idName);
+    setfullName(idName.fullName);
+    setposition(idName.position);
+    setfacebook(idName.facebook);
+    setwhatsapp(idName.whatsapp);
+    setinstagram(idName.instagram);
   }, [idName]);
+
   const {
     register,
     formState: { errors },
