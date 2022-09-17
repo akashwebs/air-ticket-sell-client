@@ -1,4 +1,3 @@
-import getDaysInMonth from "date-fns/getDaysInMonth/index";
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import Footer from "../../Shared/Footer";
@@ -8,37 +7,10 @@ const Dashboard = () => {
   const dashboardMenu = (
     <>
       <li>
-        <Link to={"/"}>Overview</Link>
+        <Link to={"/"}>Add Sell</Link>
       </li>
       <li>
-        <Link to={"/donor"}>Add Donor</Link>
-      </li>
-      <li>
-        <Link to={"/addbanner"}>Add Banner</Link>
-      </li>
-      <li>
-        <Link to={"/bannerlist"}>Banner Setting</Link>
-      </li>
-      <li>
-        <Link to={"/donnerlist"}>All Donner</Link>
-      </li>
-      <li>
-        <Link to={"/add-notice"}>Add Notice</Link>
-      </li>
-      <li>
-        <Link to={"/approved-request"}>Donner Request</Link>
-      </li>
-      <li>
-        <Link to={"/add-post"}>Add Post</Link>
-      </li>
-      <li>
-        <Link to={"/all-post"}>All Post</Link>
-      </li>
-      <li>
-        <Link to={"/add-family-member"}>Add Family Member</Link>
-      </li>
-      <li>
-        <Link to={"/all-family-member"}>All Family Member</Link>
+        <Link to={"/all-sell"}>All Sell</Link>
       </li>
     </>
   );

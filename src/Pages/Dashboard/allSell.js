@@ -1,52 +1,32 @@
 import React, { useEffect, useState } from "react";
 import Heading from "../../Shared/Heading";
 import Loading from "../../Shared/Loading";
-import FamilyMemberRow from "./FamilyMemberRow";
+import FamilyMemberRow from "./AllSellRow";
 import { useQuery } from "@tanstack/react-query";
-import swal from "sweetalert";
-import ReactPaginate from "react-paginate";
-import FamilyUpdateModal from "./FamilyUpdateModal";
+import AllSellRow from "./AllSellRow";
 
-const AllFamilyMember = () => {
-  const [memberId, setMemberId] = useState("");
-  const handleDeleteMember = (id) => {
-    swal({
-      title: "Are you sure?",
-      text: `Once deleted, you will not be able to recover " "`,
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        const url = `https://rokto-bondon-server.vercel.app/delete-family-member/${id}`;
-        fetch(url, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            refetch();
-          });
+const AllSell = () => {
+  // ----------------current balance---
+  let balanceUrl = "http://localhost:5000/current-balance";
+  const {
+    isLoading: currentLoading,
+    data: balance,
+    refetch: currentRefetch,
+  } = useQuery(["current-blance-get"], () =>
+    fetch(balanceUrl).then((res) => res.json())
+  );
 
-        swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-        });
-      } else {
-        swal(`file is safe!`);
-      }
-    });
-  };
-
-  let url = `https://rokto-bondon-server.vercel.app/all-family-member`;
+  let url = `http://localhost:5000/all-sell`;
 
   const {
     isLoading,
     error,
-    data: members,
+    data: sells,
     refetch,
-  } = useQuery(["allMemberProfile"], () =>
+  } = useQuery(["all-sell-details"], () =>
     fetch(url).then((res) => res.json())
   );
-  const [currentItems, setCurrentItems] = useState([]);
+  /* const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
 
   const [itemOffset, setItemOffset] = useState(0);
@@ -62,36 +42,45 @@ const AllFamilyMember = () => {
     const newOffset = (event.selected * itemsPerPage) % members?.length;
     setItemOffset(newOffset);
   };
-
+ */
   if (isLoading) {
     return <Loading></Loading>;
   }
 
   return (
     <>
-      <Heading>All Family Member</Heading>
+      <Heading>All Sell Info</Heading>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
           <thead>
             <tr>
               <th>S/N</th>
-              <th>Name</th>
-              <th>Position</th>
-              <th>social Link</th>
-              <th>action</th>
-              <th>Orders</th>
+              <th>Date</th>
+              <th>description/fax</th>
+              <th>PNR</th>
+              <th>DR taka</th>
+              <th>CR taka</th>
+              <th>Closing Balance</th>
+              <th>Action</th>
             </tr>
           </thead>
+
           <tbody>
-            {currentItems?.map((member, index) => (
-              <FamilyMemberRow
-                key={member?._id}
-                member={member}
-                index={index + 1}
+            <tr>
+              <td colSpan={7}>
+                <div className="flex justify-between pr-40 text-sm font-bold">
+                  <span>Current Closing Balance: </span>
+                  <span>{balance.currentBalance} </span>
+                </div>
+              </td>
+            </tr>
+            {sells?.map((sell) => (
+              <AllSellRow
+                key={sell?._id}
+                sell={sell}
                 refetch={refetch}
-                handleDeleteMember={handleDeleteMember}
-                setMemberId={setMemberId}
-              ></FamilyMemberRow>
+                currentRefetch={currentRefetch}
+              ></AllSellRow>
             ))}
           </tbody>
 
@@ -100,7 +89,7 @@ const AllFamilyMember = () => {
               {/* paginate */}
               <td colSpan={5} className="">
                 <div className="">
-                  <ReactPaginate
+                  {/*  <ReactPaginate
                     breakLabel="..."
                     nextLabel=">>"
                     onPageChange={handlePageClick}
@@ -114,19 +103,19 @@ const AllFamilyMember = () => {
                     previousLinkClassName="btn-sm btn"
                     nextLinkClassName="btn btn-sm"
                     activeClassName="pagination-active"
-                  />
+                  /> */}
                 </div>
               </td>
             </tr>
           </tfoot>
         </table>
-        <FamilyUpdateModal
+        {/* <FamilyUpdateModal
           idName={memberId}
           refetch={refetch}
-        ></FamilyUpdateModal>
+        ></FamilyUpdateModal> */}
       </div>
     </>
   );
 };
 
-export default AllFamilyMember;
+export default AllSell;

@@ -1,7 +1,6 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import auth from "../firebase.init";
-import logo from "../asstes/logo.png";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -45,7 +44,7 @@ const Header = () => {
         <div className="dropdown dropdown-end">
           <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <img src={logo} />
+              <div className="w-12 h-12 bg-red-500"></div>
             </div>
           </label>
           <ul
