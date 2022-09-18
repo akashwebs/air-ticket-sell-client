@@ -13,7 +13,7 @@ const AllSellRow = ({ sell, refetch, currentRefetch }) => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        const deleteurl = `http://localhost:5000/delete-sell/${sell?._id}`;
+        const deleteurl = `https://air-ticket-sell-server.vercel.app/delete-sell/${sell?._id}`;
         fetch(deleteurl, {
           method: "DELETE",
         })
@@ -30,13 +30,16 @@ const AllSellRow = ({ sell, refetch, currentRefetch }) => {
               email: "akash@gmail.com",
             };
 
-            fetch("http://localhost:5000/add-current-balance/akash@gmail.com", {
-              method: "PUT",
-              headers: {
-                "content-type": "application/json",
-              },
-              body: JSON.stringify(balance),
-            })
+            fetch(
+              "https://air-ticket-sell-server.vercel.app/add-current-balance/akash@gmail.com",
+              {
+                method: "PUT",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify(balance),
+              }
+            )
               .then((res) => res.json())
               .then((balance) => {
                 console.log(balance);
@@ -62,7 +65,7 @@ const AllSellRow = ({ sell, refetch, currentRefetch }) => {
       <td>{sell?.date}</td>
       <td>
         <p>Fax Name:{sell?.faxname}</p>
-        <p>pyment System:{sell?.payment}</p>
+        <p>pyment System:{sell?.pyment}</p>
       </td>
 
       <td>{sell?.pnr}</td>

@@ -7,7 +7,7 @@ import AllSellRow from "./AllSellRow";
 
 const AllSell = () => {
   // ----------------current balance---
-  let balanceUrl = "http://localhost:5000/current-balance";
+  let balanceUrl = "https://air-ticket-sell-server.vercel.app/current-balance";
   const {
     isLoading: currentLoading,
     data: balance,
@@ -16,7 +16,7 @@ const AllSell = () => {
     fetch(balanceUrl).then((res) => res.json())
   );
 
-  let url = `http://localhost:5000/all-sell`;
+  let url = `https://air-ticket-sell-server.vercel.app/all-sell`;
 
   const {
     isLoading,
@@ -43,7 +43,7 @@ const AllSell = () => {
     setItemOffset(newOffset);
   };
  */
-  if (isLoading) {
+  if ((isLoading, currentLoading)) {
     return <Loading></Loading>;
   }
 
@@ -70,7 +70,7 @@ const AllSell = () => {
               <td colSpan={7}>
                 <div className="flex justify-between pr-40 text-sm font-bold">
                   <span>Current Closing Balance: </span>
-                  <span>{balance.currentBalance} </span>
+                  <span>{balance?.currentBalance} </span>
                 </div>
               </td>
             </tr>

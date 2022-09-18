@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 const AddSell = () => {
   // current balance --------------------
 
-  let balanceUrl = "http://localhost:5000/current-balance";
+  let balanceUrl = "https://air-ticket-sell-server.vercel.app/current-balance";
   const {
     isLoading,
     error,
@@ -33,13 +33,16 @@ const AddSell = () => {
       email: "akash@gmail.com",
     };
 
-    fetch("http://localhost:5000/add-current-balance/akash@gmail.com", {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(balance),
-    })
+    fetch(
+      "https://air-ticket-sell-server.vercel.app/add-current-balance/akash@gmail.com",
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(balance),
+      }
+    )
       .then((res) => res.json())
       .then((balance) => {
         console.log(balance);
@@ -75,7 +78,7 @@ const AddSell = () => {
       currentBalance: newCurrentBalance,
     };
 
-    fetch("http://localhost:5000/add-sell", {
+    fetch("https://air-ticket-sell-server.vercel.app/add-sell", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -94,13 +97,16 @@ const AddSell = () => {
             email: "akash@gmail.com",
           };
 
-          fetch("http://localhost:5000/add-current-balance/akash@gmail.com", {
-            method: "PUT",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(balance),
-          })
+          fetch(
+            "https://air-ticket-sell-server.vercel.app/add-current-balance/akash@gmail.com",
+            {
+              method: "PUT",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(balance),
+            }
+          )
             .then((res) => res.json())
             .then((balance) => {
               console.log(balance);
